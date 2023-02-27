@@ -1,3 +1,3 @@
 # RateMyStudySpace
 
-[Firebase](https://firebase.google.com/) Authentication, storage, etc.
+[Firebase](https://firebase.google.com/): Authentication, storage, etc.
