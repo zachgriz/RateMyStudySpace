@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');
+
+body
+{
+    font-family: 'Montserrat';
+}
+.title
+{
+    margin-left: 0px;
+    font-size: 24px;
+    font-weight: 700;
+}
+.vertical-center /* parent element must have position: relative*/
+{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+.nav
+{
+    height: 50px;
+    position: relative;
+}
+.nav-logo
+{
+    margin-left: 70px;
+    height: 30px;
+}
+.home-landing
+{
+    background-color: rgb(224, 224, 224);
+    height: 500px;
+    position: relative;
+}
+.landing-headline
+{
+    font-size: 32px;
+    font-weight: 700;
+}
+.searchbar
+{
+    width: 25%;
+    border: 0px;
+    border-radius: 15px;
+    text-indent: 20px;
+}
+.regprompt-head
+{
+    font-size: 32px;
+    font-weight: 500;
+    color: #9D4CBA;
+    margin-top: 50px;
+}
