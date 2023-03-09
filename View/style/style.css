@@ -10825,7 +10825,8 @@ textarea.form-control-lg {
 }
 
 .title {
-  margin-left: 0px;
+  display: inline;
+  margin: 0px;
   font-size: 24px;
   font-weight: 700;
 }
@@ -10835,6 +10836,7 @@ textarea.form-control-lg {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+  align-items: center;
 }
 
 .nav {
@@ -10842,7 +10844,15 @@ textarea.form-control-lg {
   position: relative;
 }
 
+.masthead {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .nav-logo {
+  display: inline-block;
+  margin: 5px;
   margin-left: 70px;
   height: 30px;
 }
@@ -10887,4 +10897,10 @@ textarea.form-control-lg {
   font-weight: 500;
   color: #9D4CBA;
   margin-top: 50px;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }/*# sourceMappingURL=style.css.map */
