@@ -1,0 +1,47 @@
+.home-landing {
+  background-color: rgb(224, 224, 224);
+  height: 500px;
+  position: relative;
+}
+
+.landing-headline {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.searchbar {
+  width: 60%;
+  display: inline-block;
+}
+
+.searchbar input {
+  width: 30%;
+  border: none;
+  border-radius: 15px;
+  text-indent: 12px;
+}
+
+.searchbar button {
+  background: none;
+  border: none;
+  color: rgb(167, 167, 167);
+  transform: translatex(-150%);
+}
+
+.search-box button:hover {
+  color: #fff;
+  background: #06283D;
+}
+
+.regprompt-head {
+  font-size: 32px;
+  font-weight: 500;
+  color: #9D4CBA;
+  margin-top: 50px;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}/*# sourceMappingURL=home.css.map */
