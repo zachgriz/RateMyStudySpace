@@ -10831,13 +10831,6 @@ textarea.form-control-lg {
   transform: translate(-50%, -50%);
 }
 
-.title {
-  display: inline;
-  margin: 0px;
-  font-size: 24px;
-  font-weight: 700;
-}
-
 .vertical-center {
   margin: 0;
   position: absolute;
@@ -10864,105 +10857,9 @@ textarea.form-control-lg {
   height: 30px;
 }
 
-.home-landing {
-  background-color: rgb(224, 224, 224);
-  height: 500px;
-  position: relative;
-}
-
-.landing-headline {
-  font-size: 32px;
+.title {
+  display: inline;
+  margin: 0px;
+  font-size: 24px;
   font-weight: 700;
-}
-
-.searchbar {
-  width: 60%;
-  display: inline-block;
-}
-
-.searchbar input {
-  width: 30%;
-  border: none;
-  border-radius: 15px;
-  text-indent: 12px;
-}
-
-.searchbar button {
-  background: none;
-  border: none;
-  color: rgb(167, 167, 167);
-  transform: translatex(-150%);
-}
-
-.search-box button:hover {
-  color: #fff;
-  background: #06283D;
-}
-
-.regprompt-head {
-  font-size: 32px;
-  font-weight: 500;
-  color: #9D4CBA;
-  margin-top: 50px;
-}
-
-.buttons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.login {
-  width: auto;
-}
-
-.login h1, .login .h1 {
-  font-weight: 600;
-}
-
-.login-box {
-  height: 350px;
-  width: 450px;
-  background-color: rgb(224, 224, 224);
-  border-radius: 25px;
-}
-
-.login-form {
-  position: relative;
-  width: 65%;
-  height: -moz-fit-content;
-  height: fit-content;
-}
-
-.login-form p {
-  color: black;
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 5px;
-  margin-top: 20px;
-}
-
-.login-form input {
-  text-indent: 15px;
-  margin-top: 0px;
-  border: none;
-  height: 36px;
-  border-radius: 15px;
-  width: 100%;
-}
-
-.login-form button {
-  margin-top: 25px;
-  width: 50%;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.login a {
-  font-size: 22px;
-  font-weight: 600;
-  text-decoration: none;
-  left: 50%;
-  transform: translateX(-50%);
-}/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=main.css.map */
