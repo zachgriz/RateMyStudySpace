@@ -10961,44 +10961,57 @@ textarea.form-control-lg {
   height: 30px;
 }
 
-.home-landing {
-  background-color: rgb(224, 224, 224);
-  height: 500px;
-  position: relative;
-}
-
-.landing-headline {
-  font-size: 32px;
-  font-weight: 700;
-}
-
-.searchbar {
-  width: 60%;
-  display: inline-block;
-}
-
-.searchbar input {
-  width: 30%;
-  border: none;
-  border-radius: 15px;
-  text-indent: 12px;
-}
-
-.searchbar button {
-  background: none;
-  border: none;
-  color: rgb(167, 167, 167);
-  transform: translatex(-150%);
-}
-
-.search-box button:hover {
-  color: #fff;
-  background: #06283D;
-}
-
-.regprompt-head {
-  font-size: 32px;
-  font-weight: 500;
+h1, .h1 {
   color: #9D4CBA;
-  margin-top: 50px;
-}/*# sourceMappingURL=style.css.map */
+  font-weight: 700;
+  font-size: 64px;
+}
+
+.profile-title {
+  position: relative;
+  height: 78px;
+}
+
+.profile-pic {
+  align-self: flex-start;
+  background-color: #D9D9D9;
+  border-radius: 68.5px;
+  height: 137px;
+  width: 137px;
+}
+
+.profile-info {
+  margin-left: 64px;
+  margin-right: 64px;
+}
+
+.profile-col-1 {
+  margin-left: 20px;
+}
+
+.username {
+  margin-top: 20px;
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.spaces-rated-num {
+  color: #9D4CBA;
+  font-weight: 500;
+  font-size: 64px;
+}
+
+.spaces-span {
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.spaces {
+  margin-left: 220px;
+}
+
+.spaces h2, .spaces .h2 {
+  font-size: 48px;
+  color: #9D4CBA;
+  margin-top: 150px;
+}/*# sourceMappingURL=myprofile.css.map */
