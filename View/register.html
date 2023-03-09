@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/main.css">
-    <link rel="stylesheet" href="style/login.css">
+    <link rel="stylesheet" href="style/register.css">
     <script src="bootstrap.bundle.min.js"></script>
-    <title>Login</title>
+    <title>Register</title>
 </head>
 <body>
     <div class="container-fluid">
@@ -21,20 +21,23 @@
             </div>
         </div>
         <div class="row">
-            <div class="login center">
-                <h1 class="text-primary">Login</h1>
-                <div class="login-box">
-                    <form action="submit" class="login-form center" method="get">
-                        <p>Username or Email</p>
+            <div class="register center">
+                <h1 class="text-primary">Register</h1>
+                <div class="register-box">
+                    <form action="submit" class="register-form center" method="get">
+                        <p>Username</p>
                         <input type="text" name="username" id="username">
+                        <p>Email</p>
+                        <input type="email" name="email" id="email">
                         <p>Password</p>
-                        <input type="password" name="password" id="password">
-                        <button type="submit" class="btn btn-primary">Login</button>
+                        <input type="password" name="password1" id="password1">
+                        <p>Confirm Password</p>
+                        <input type="password" name="password2" id="password2">
+                        <button type="submit" class="btn btn-primary">Register</button>
                     </form>
                 </div>
                 <div class="text-center">
-                    <a href="" class="link-primary">Reset Password</a><br>
-                    <a href="" class="link-primary">Don't have an account?</a>
+                    <a href="" class="link-primary">Already have an account?</a>
                 </div>
                 
             </div>
