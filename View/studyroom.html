@@ -1,16 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/main.css">
-    <link rel="stylesheet" href="style/home.css">
+    <link rel="stylesheet" href="style/studyroom.css">
     <script src="bootstrap.bundle.min.js"></script>
-    <title>Home</title>
+    <title>Add a Study Room</title>
 </head>
+
 <body>
-    
-    <script src="https://kit.fontawesome.com/7c8801c017.js" crossorigin="anonymous"></script>
+    <div class="container-fluid">
+        <div class="row nav">
+            <div class="col-1">
+                <img src="images/logo_purple.png" alt="logo_purple" class="nav-logo vertical-center">
+            </div>
+            <div class="col">
+                <p class="vertical-center title">Rate My Study Room</p>
+            </div>
+            <div class="col-7"></div>
+        </div>
+
+        <div class="main-container">
+
+            <div class="row addroom-title-row">
+                <div class="vertical-center-left addroom-title">
+                    <h1>Add a Study Room</h1>
+                </div>
+            </div>
+
+            <div class="row school-title-row">
+                <div class="vertical-center-left school-title">
+                    <!-- JS {{school}} -->
+                    <h2>Washington State University</h2>
+                </div>
+            </div>
+
+            <br /><br />
+
+            <div class="row">
+                <div class="col">
+                    <div class="d-grid gap-2 col-8">
+                        <label for="name-form">
+                            <h4>Name of Building</h4>
+                        </label>
+
+                        <input class="form-control" id="name-form" type="text"></input>
+
+                        <br /><br />
+                        <label for="roomno-form">
+                            <h4>Room Number</h4>
+                        </label>
+                        <input class="form-control" id="roomno-form" type="text"></input>
+
+                        <br /><br />
+                        <label for="location-form">
+                            <h4>Location</h4>
+                        </label>
+                        <input class="form-control" id="location-form" type="text"></input>
+
+                        <br /><br />
+                        <label for="size-form">
+                            <h4>Size</h4>
+                        </label>
+                        <input class="form-control" id="size-form" type="text"></input>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <label for="description-form">
+                        <h4>Add a Description</h4>
+                    </label>
+                    <textarea class="form-control" id="description-form" rows="5"></textarea>
+
+                    <br /><br /><br />
+                    <h4> Add Images + </h4>
+                    <br /><br /><br /><br /><br />
+
+                    <div class="d-grid gap-2 col-3">
+                        <button type="submit" class="btn btn-primary">Add Room</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <script src="https://kit.fontawesome.com/7c8801c017.js" crossorigin="anonymous"></script>
 </body>
+
 </html>
