@@ -16,6 +16,7 @@
 .login-form {
   position: relative;
   width: 65%;
+  height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
 }
