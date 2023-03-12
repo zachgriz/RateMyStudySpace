@@ -23,10 +23,18 @@ app.use(express.static('public'))
 app.engine('hbs', exphbs.engine( {extname: '.hbs' }));
 app.set('view engine', 'hbs');
 
+//Database connection
+const pool = require('knex')({
+    client: 'pg',
+    connection: {
+      host : process.env.DB_HOST,
+      user : process.env.DB_USER,
+      password : process.env.DB_PASS,
+      database : process.env.DB_NAME
+    }
+  });
 
-app.get('/schoolsearch', (req,res) => 
-{
-    res.render('schoolsearch');
-});
+const routes = require('../Controller/routes/school');
+app.use('/', routes)
 
 app.listen(port, () => console.log('listening on port ' + port));

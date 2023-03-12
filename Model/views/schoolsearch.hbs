@@ -1,10 +1,51 @@
+<div class = "container-search">
+
 <br /><br />
 
-<form>
-    <div class =  "form-row">
-        <div class = "col-4">
-             <input type = "text" class = "form-control" placeholder="Search for your school">
-             <button type = "submit" class="fa-solid fa-magnifying-glass"></button>
-        </div>
+<div class="row home-landing">
+    <div class="col-5">
+
+        {{!-- We should validate the search query for the frontend --}}
+        <form class="input-group rounded" method="POST" action = "/schoolsearch" novalidate>
+            <input type="text" class="form-control rounded mx-2" placeholder="Search for your school" name = "search">
+            <button class="fa-solid fa-magnifying-glass" id = "search-button"></button>
+        </form>
     </div>
-</form>
+
+</div>
+
+<br /><br />
+
+<table class="table table-hover">
+  <thead class = "thead-dark">
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Average Rating</th>
+      <th scope="col">Address</th>
+      <th scope="col">Number of Rooms</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    {{#each results}}
+    <tr class = "clickable" onclick=
+"window.location='https://www.google.com'" > 
+      <td>{{this.sname}}</td>
+      <td>{{this.avg_rating}}</td>
+      <td>{{this.city}}, {{this.state}}</td>
+      <td>{{this.numrooms}}</td>
+    </tr>
+
+    {{/each}}
+  </tbody>
+</table>
+
+<br />
+
+<h5>Don't see the school you're looking for? </h5>
+<a href="#" type="button" class="btn btn-light">Add School &nbsp;&nbsp;<i class="fa-solid fa-plus"></i></a>
+
+{{!-- <a href="#" type ="button" class = "btn btn-light">Edit School &nbsp;&nbsp;<i class = "fa-solid fa-pen-to-square"></i></a>
+<a href="#" type ="button" class = "btn btn-light">Delete School &nbsp;&nbsp;<i class = "fa-solid fa-trash"></i></a> --}}
+
+</div>
