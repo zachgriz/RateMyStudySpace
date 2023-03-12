@@ -7,7 +7,7 @@ router.get('/schoolsearch', schoolController.view);
 router.post('/schoolsearch', schoolController.find);
 router.get('/addschool', schoolController.schoolform);
 router.post('/addschool', schoolController.schoolcreate);
-router.post('/viewschool/:id', schoolController.schoolview);
+router.get('/viewschool/:id', schoolController.schoolview);
 
 
 

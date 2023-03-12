@@ -63,7 +63,7 @@ exports.schoolcreate = (req, res) => {
 };
 
 // View selected school
-exports.view = (req, res) => {
+exports.schoolview = (req, res) => {
     // Perform database query
     knex
         .select()

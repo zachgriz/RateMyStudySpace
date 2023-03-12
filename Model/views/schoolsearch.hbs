@@ -2,6 +2,13 @@
 
 <br /><br />
 
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Search for Schools</li>
+  </ol>
+</nav>
+
 <div class="row home-landing">
     <div class="col-5">
 
@@ -29,7 +36,7 @@
 
     {{#each results}}
     <tr class = "clickable" onclick=
-"window.location='/viewschool/{{this.id}}'" > 
+"window.location='/viewschool/{{this.sid}}'" > 
       <td>{{this.sname}}</td>
       <td>{{this.avg_rating}}</td>
       <td>{{this.city}}, {{this.state}}</td>
