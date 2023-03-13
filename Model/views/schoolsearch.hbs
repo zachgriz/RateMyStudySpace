@@ -1,10 +1,9 @@
 <div class = "container-search">
-
 <br /><br />
 
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
     <li class="breadcrumb-item active" aria-current="page">Search for Schools</li>
   </ol>
 </nav>
@@ -21,10 +20,11 @@
 
 </div>
 
+
 <br /><br />
 
 <table class="table table-hover">
-  <thead class = "thead-dark">
+  <thead class = "thead-light">
     <tr>
       <th scope="col">Name</th>
       <th scope="col">Average Rating</th>
@@ -35,12 +35,13 @@
   <tbody>
 
     {{#each results}}
-    <tr class = "clickable" onclick=
+    <tr onclick=
 "window.location='/viewschool/{{this.sid}}'" > 
       <td>{{this.sname}}</td>
       <td>{{this.avg_rating}}</td>
       <td>{{this.city}}, {{this.state}}</td>
       <td>{{this.numrooms}}</td>
+      
     </tr>
 
     {{/each}}

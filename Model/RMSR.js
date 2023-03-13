@@ -1,6 +1,7 @@
 const express = require('express');
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
+const path = require('path');
 
 require('dotenv').config();
 
@@ -16,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // Parse static files 
-app.use(express.static('public'))
+app.use(express.static(path.join(__dirname, 'public')));
 
 //Templating engine (This is where we would use ejs)
 // app.set("view engine", "ejs");
@@ -34,7 +35,7 @@ const pool = require('knex')({
     }
   });
 
-const routes = require('../Controller/routes/school');
+const routes = require('../Server/routes/router');
 app.use('/', routes)
 
 app.listen(port, () => console.log('listening on port ' + port));

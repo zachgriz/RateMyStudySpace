@@ -1,13 +1,13 @@
 //Database connection
-const knex = require('knex')({
-    client: 'pg',
-    connection: {
-        host: "localhost",
-        user: "postgres",
-        password: "dragon567",
-        database: "Rate My Study Room"
-    }
-});
+// const knex = require('knex')({
+//     client: 'pg',
+//     connection: {
+//         host: "localhost",
+//         user: "postgres",
+//         password: "dragon567",
+//         database: "Rate My Study Room"
+//     }
+// });
 
 // View all schools in table
 exports.view = (req, res) => {
@@ -65,14 +65,11 @@ exports.schoolcreate = (req, res) => {
 // View selected school
 exports.schoolview = (req, res) => {
     // Perform database query
+    console.log("sid: ", req.params.sid);
     knex
-        .select()
-        .from("school")
-        .where('sname', '=', req.params.id )
+        knex.raw("select * from school where sid = ?", req.params.sid)
         .then((results) => {
-            res.render('viewschool', { results: results });
-
-        // console.log(results);
-
+            console.log("rows: ", results.rows);
+            res.render('viewschool', { results: results.rows });
         });
 }
