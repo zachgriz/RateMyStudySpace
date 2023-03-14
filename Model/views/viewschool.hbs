@@ -17,56 +17,58 @@
 
     <br />
     <table class="table table-hover">
-  <thead class = "thead-light">
-    <tr>
-      <th scope="col">Building</th>
-      <th scope="col">Room Number</th>
-      <th scope="col">Address</th>
-      <th scope="col">Fits</th>
-    </tr>
-  </thead>
-  <tbody>
-{{/results}}
-    {{#rooms}}
-    <tr onclick=
-"window.location='/'" > 
-      <td>{{this.bname}}</td>
-      <td>{{this.rno}}</td>
-      <td>{{this.address}}</td>
-      <td>{{this.fits}}</td>
-      
-    </tr>
-    {{/rooms}}
-    {{#results}}
-  </tbody>
-</table>
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">Building</th>
+                <th scope="col">Room Number</th>
+                <th scope="col">Address</th>
+                <th scope="col">Fits</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{/results}}
+            {{#rooms}}
+            <tr onclick="window.location='/{{this.sid}}/{{this.rid}}'">
+                <td>{{this.bname}}</td>
+                <td>{{this.rno}}</td>
+                <td>{{this.address}}</td>
+                <td>{{this.fits}}</td>
+
+            </tr>
+            {{/rooms}}
+            {{#results}}
+        </tbody>
+    </table>
     <br /><br />
 
 
 
     <div class="row">
         <div class="col">
-            <h1 style="font-size: 3em;">Average Rating:</h1>
+            <h1 style="font-size: 3em; margin-bottom: 2.5em;">Average Rating:</h1>
 
-            <input class="rating" max="5" readonly {{!--
-                oninput="this.style.setProperty('--value', `${this.valueAsNumber}`)" --}} step="0.5"
-                style="--value:{{this.avg_rating}}" type="range" value="{{this.avg_rating}}">
-            </label>
-
-
+            <div class="row">
+                <div class="vertical-center">
+                    <input class="rating" max="5" readonly {{!--
+                        oninput="this.style.setProperty('--value', `${this.valueAsNumber}`)" --}} step="0.5"
+                        style="--value:{{this.s_avg_rating}}" type="range" value="{{this.s_avg_rating}}">
+                </div>
+                <div class="vertical-center" style="margin-left: 16em;">
+                    <h2 class="vertical-center">{{this.s_avg_rating}}/5</h2>
+                </div>
+            </div>
         </div>
         <div class="col">
             <h1 style="font-size: 3em">Number of Rooms:</h1>
-
-            <h2 style="font-size: 3em;">{{this.numrooms}}</h2>
+            <h2>{{this.numrooms}}</h2>
 
             <div class="d-grid gap-2 col-4 px-0">
-                <a href="/{{this.sid}}/addstudyroom" type="button" class="btn btn-primary">Add Study Room &nbsp;&nbsp;<i class="fa-solid fa-plus"></i></a>
+                <a href="/{{this.sid}}/addroom" type="button" class="btn btn-primary">Add Study Room &nbsp;&nbsp;<i
+                        class="fa-solid fa-plus"></i></a>
             </div>
-
         </div>
     </div>
 
     {{/results}}
-<br /> <br />
+    <br /> <br />
 </div>

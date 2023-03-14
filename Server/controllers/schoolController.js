@@ -67,9 +67,4 @@ exports.schoolview = (req, res) => {
             });
         });
     });
-    
-
-   
-   
-       
 }

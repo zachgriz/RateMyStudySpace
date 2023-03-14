@@ -21,7 +21,7 @@ exports.roomform = (req, res) => {
     knex
         knex.raw("select * from school where sid = ?", req.params.sid)
         .then((results) => {
-            res.render('addstudyroom', { results: results.rows });
+            res.render('addroom', { results: results.rows });
         });
 }
 
@@ -40,7 +40,15 @@ exports.roomcreate = (req, res) => {
         return knex.raw("select * from school where sid = ?", req.params.sid) })
     .then(function(results) {
         
-        res.render('addstudyroom', {results: results.rows, alert : "Room added successfully. "} );
+        res.render('addroom', {results: results.rows, alert : "Room added successfully. "} );
     });
+};
 
+//View rate/room
+exports.roomview = (req, res) => {
+    knex.raw("select * from school, room where school.sid = room.sid and room.sid = ? and room.rid = ?", [req.params.sid, req.params.rid]).then(function(results){
+    knex.raw("select * from school where school.sid = ?", req.params.sid).then(function(school){
+        res.render('viewroom', {results: results.rows, school: school.rows});
+    });
+    });
 };

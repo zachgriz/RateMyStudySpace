@@ -18,7 +18,10 @@ router.get('/viewschool/:sid', schoolController.schoolview);
 router.get('/register', accountController.register);
 router.get('/login', accountController.login);
 
-router.get('/:sid/addstudyroom', roomController.roomform);
-router.post('/:sid/addstudyroom', roomController.roomcreate);
+router.get('/:sid/addroom', roomController.roomform);
+router.post('/:sid/addroom', roomController.roomcreate);
+router.get('/:sid/:rid', roomController.roomview);
+
+
 
 module.exports = router;
