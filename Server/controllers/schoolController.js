@@ -1,13 +1,13 @@
-//Database connection
-// const knex = require('knex')({
-//     client: 'pg',
-//     connection: {
-//         host: "localhost",
-//         user: "postgres",
-//         password: "dragon567",
-//         database: "Rate My Study Room"
-//     }
-// });
+// Database connection
+const knex = require('knex')({
+    client: 'pg',
+    connection: {
+        host: "localhost",
+        user: "postgres",
+        password: "dragon567",
+        database: "Rate My Study Room"
+    }
+});
 
 // View all schools in table
 exports.view = (req, res) => {
@@ -30,7 +30,7 @@ exports.find = (req, res) => {
     knex
     .select('*')
     .from("school")
-    .where('sname', 'LIKE', '%' + searchterm +'%')
+    .where('sname', 'LIKE', ['%' + searchterm +'%'])
     .then((results) => {
         res.render('schoolsearch', { results: results });
 
@@ -66,10 +66,24 @@ exports.schoolcreate = (req, res) => {
 exports.schoolview = (req, res) => {
     // Perform database query
     console.log("sid: ", req.params.sid);
-    knex
-        knex.raw("select * from school where sid = ?", req.params.sid)
-        .then((results) => {
-            console.log("rows: ", results.rows);
-            res.render('viewschool', { results: results.rows });
+
+        // .update ({numrooms: knex.raw("select count(*) from room, school where room.sid = school.sid and room.sid = ?) where school.sid = ?", [req.params.sid,req.params.sid])});
+       
+    knex.raw("select * from school where sid = ?", req.params.sid).then(function(schools) {
+    knex.raw("select * from room, school where room.sid = school.sid and room.sid = ?", req.params.sid).then(function(rooms){
+    knex.raw("select count(*) from room, school where room.sid = school.sid and room.sid = ?", req.params.sid).then(function(count) {
+    knex.raw('update school set numrooms = (select count(*) from room, school where room.sid = school.sid and room.sid = ?) where school.sid = ?', [req.params.sid, req.params.sid])
+        .then(function(result) 
+        {
+            console.log(rooms.rows)
+            res.render('viewschool', {results: schools.rows, rooms: rooms.rows, count: count.rows});
         });
+    });
+    });
+});
+    
+
+   
+   
+       
 }
