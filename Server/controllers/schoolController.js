@@ -17,9 +17,6 @@ exports.view = (req, res) => {
         .from("school")
         .then((results) => {
             res.render('schoolsearch', { results: results });
-
-        // console.log(results);
-
         });
 }
 
@@ -44,11 +41,8 @@ exports.schoolform = (req, res) => {
 
 //Add new school
 exports.schoolcreate = (req, res) => {
-    // res.render('addschool');
-
     const {schoolname, countryname, statename, cityname} = req.body;
     
-    console.log(schoolname, countryname, statename, cityname);
     knex
     .insert ({sname: schoolname,
             country: countryname,
@@ -59,28 +53,20 @@ exports.schoolcreate = (req, res) => {
     .then((results) => {
         res.render('addschool', {alert : "School added successfully. "} );
     });
-
 };
 
-// View selected school
+// View selected school. Chains together multiple queries with knex by using .then(). Finally, pass the results of all queries to the school view. Select school, select all room for given school, and select no. of rooms for given school.
 exports.schoolview = (req, res) => {
-    // Perform database query
-    console.log("sid: ", req.params.sid);
-
-        // .update ({numrooms: knex.raw("select count(*) from room, school where room.sid = school.sid and room.sid = ?) where school.sid = ?", [req.params.sid,req.params.sid])});
-       
-    knex.raw("select * from school where sid = ?", req.params.sid).then(function(schools) {
-    knex.raw("select * from room, school where room.sid = school.sid and room.sid = ?", req.params.sid).then(function(rooms){
-    knex.raw("select count(*) from room, school where room.sid = school.sid and room.sid = ?", req.params.sid).then(function(count) {
-    knex.raw('update school set numrooms = (select count(*) from room, school where room.sid = school.sid and room.sid = ?) where school.sid = ?', [req.params.sid, req.params.sid])
-        .then(function(result) 
-        {
-            console.log(rooms.rows)
-            res.render('viewschool', {results: schools.rows, rooms: rooms.rows, count: count.rows});
+    knex.raw("select * from school where sid = ?", req.params.sid).then(function (schools) {
+        knex.raw("select * from room, school where room.sid = school.sid and room.sid = ?", req.params.sid).then(function (rooms) {
+            knex.raw("select count(*) from room, school where room.sid = school.sid and room.sid = ?", req.params.sid).then(function (count) {
+                knex.raw('update school set numrooms = (select count(*) from room, school where room.sid = school.sid and room.sid = ?) where school.sid = ?', [req.params.sid, req.params.sid])
+                    .then(function (result) {
+                        res.render('viewschool', { results: schools.rows, rooms: rooms.rows, count: count.rows });
+                    });
+            });
         });
     });
-    });
-});
     
 
    
