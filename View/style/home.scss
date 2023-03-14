@@ -1,9 +1,13 @@
 .home-landing{
     background-color: rgb(224, 224, 224);
     height: 500px;
-    position: relative;
+}
+
+.home-landing div form{
+    width: fit-content;
 }
 .landing-headline{
+    text-align: center;
     font-size: 32px;
     font-weight: 700;
 }
