@@ -4,13 +4,6 @@
    
     {{#results}}
 
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/">Home</a></li>
-            <li class="breadcrumb-item"><a href="/schoolsearch">Search For Schools</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{this.bname}} {{this.rno}}</li>
-        </ol>
-    </nav>
     <div class="row">
         <div class="col-5">
             <h1>{{this.bname}} {{this.rno}}</h1>
@@ -21,6 +14,13 @@
             {{!-- {{/school}}
            {{#results}} --}}
 
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item"><a href="/viewschool/{{this.sid}}">School View</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{this.bname}} {{this.rno}}</li>
+        </ol>
+    </nav>
             <div class = "row">
                 <div class="col">
             <input class="rating" max="5" readonly {{!--
@@ -31,7 +31,9 @@
        
         
             <div class = "col">
+                {{#if this.r_avg_rating}}
                 <h5 class = "vertical-center">{{this.r_avg_rating}}/5</h5>
+                {{/if}}
             </div>
             </div>
             <br />
@@ -42,7 +44,7 @@
             <h5>Description:</h5>
             <p>{{this.description}}</p>
 
-            <a href="/" type="button" class="btn btn-primary">Rate This Room</a>
+            <a href="/{{this.sid}}/{{this.rid}}/rate" type="button" class="btn btn-primary">Rate This Room</a>
         </div>
         <div class = "col">
             <img src = "/images/logo_purple.png">

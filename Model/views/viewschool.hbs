@@ -2,7 +2,8 @@
 
     <br /><br />
     {{#results}}
-
+    <h1>{{this.sname}}</h1>
+    <h4>{{this.city}}, {{this.state}}</h4>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/">Home</a></li>
@@ -12,8 +13,7 @@
     </nav>
 
 
-    <h1>{{this.sname}}</h1>
-    <h4>{{this.city}}, {{this.state}}</h4>
+   
 
     <br />
     <table class="table table-hover">
@@ -23,6 +23,7 @@
                 <th scope="col">Room Number</th>
                 <th scope="col">Address</th>
                 <th scope="col">Fits</th>
+                <th scope="col">Rating</th>
             </tr>
         </thead>
         <tbody>
@@ -33,6 +34,8 @@
                 <td>{{this.rno}}</td>
                 <td>{{this.address}}</td>
                 <td>{{this.fits}}</td>
+                <td>{{this.r_avg_rating}}</td>
+
 
             </tr>
             {{/rooms}}

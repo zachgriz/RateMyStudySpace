@@ -21,7 +21,8 @@ router.get('/login', accountController.login);
 router.get('/:sid/addroom', roomController.roomform);
 router.post('/:sid/addroom', roomController.roomcreate);
 router.get('/:sid/:rid', roomController.roomview);
-
+router.get('/:sid/:rid/rate', roomController.roomrate);
+router.post('/:sid/:rid', roomController.rate);
 
 
 module.exports = router;

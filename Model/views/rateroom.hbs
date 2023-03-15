@@ -1,0 +1,35 @@
+<div class="container-search">
+    <br /> <br />
+    <h1>Leave a Rating</h1>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item"><a href="/{{sid}}">School View</a></li>
+            <li class="breadcrumb-item"><a href="/{{sid}}/{{rid}}">Room View</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Rate</li>
+        </ol>
+    </nav>
+     {{#if alert}}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{alert}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close" id ="close-alert">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {{/if}}
+    
+    <form method="POST" action="/{{sid}}/{{rid}}">
+        <input class="rating" max="5" oninput="this.style.setProperty('--value', `${this.valueAsNumber}`)" step="0.5"
+            style="--value:0" type="range" value="0">
+
+            <br />
+        <label for="description-form">
+            <h4>Add a Description</h4>
+        </label>
+        <textarea class="form-control" id="description-form" rows="5" name="description"></textarea>
+        <br /> 
+        <div class="d-grid gap-2 col-3 pl-0">
+            <button type="submit" class="btn btn-primary">Rate Room</button>
+        </div>
+    </form>
+</div>

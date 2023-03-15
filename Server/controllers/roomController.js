@@ -52,3 +52,16 @@ exports.roomview = (req, res) => {
     });
     });
 };
+
+exports.roomrate = (req,res) => {
+    // console.log('params: ', req.params);
+
+    res.render('rateroom', {sid: req.params.sid, rid: req.params.rid});
+}
+
+exports.rate = (req,res) => {
+    console.log("body: ", req.body);
+
+    res.render('rateroom', {alert: "Rating added successfully"});
+}
+
