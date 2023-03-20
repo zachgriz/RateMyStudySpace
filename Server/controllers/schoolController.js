@@ -20,16 +20,14 @@ exports.view = (req, res) => {
         });
 }
 
-//Search for specific school
+//Search for specific school. Return a list of schools matching the query string in some way. 
+// Both schools and query are set to lowercase to avoid case matching.
 exports.find = (req, res) => {
-    let searchterm = req.body.search
+    const searchterm = req.body.search
 
-    knex
-    .select('*')
-    .from("school")
-    .where('sname', 'LIKE', ['%' + searchterm +'%'])
+    knex.raw("SELECT * FROM school WHERE lower(sname) LIKE lower('%" + searchterm + "%')")
     .then((results) => {
-        res.render('schoolsearch', { results: results });
+        res.render('schoolsearch', { results: results.rows, count: results.rows.length, searchterm: searchterm });
 
     });
 }
@@ -62,6 +60,7 @@ exports.schoolview = (req, res) => {
             knex.raw("select count(*) from room, school where room.sid = school.sid and room.sid = ?", req.params.sid).then(function (count) {
                 knex.raw('update school set numrooms = (select count(*) from room, school where room.sid = school.sid and room.sid = ?) where school.sid = ?', [req.params.sid, req.params.sid])
                     .then(function (result) {
+                        console.log("rooms:", rooms.rows)
                         res.render('viewschool', { results: schools.rows, rooms: rooms.rows, count: count.rows });
                     });
             });

@@ -46,11 +46,17 @@ exports.roomcreate = (req, res) => {
 
 //View rate/room
 exports.roomview = (req, res) => {
+
+    console.log("rid = " + req.params.rid)
+
     knex.raw("select * from school, room where school.sid = room.sid and room.sid = ? and room.rid = ?", [req.params.sid, req.params.rid]).then(function(results){
+    knex.raw("SELECT ROUND(avg(rating), 2) FROM(SELECT * FROM review, room WHERE room.rid = review.rid and room.sid = review.sid and room.rid = ?) as ratings", req.params.rid).then(function(rating){
+    console.log("ratingval: ", Number(rating.rows[0].round))
+    knex.raw("UPDATE room SET room_avg_rating = ? WHERE room.rid = ? and room.sid = ?", [Number(rating.rows[0].round), req.params.rid, req.params.sid]).then(function(update){
     knex.raw("select * from school where school.sid = ?", req.params.sid).then(function(school){
         res.render('viewroom', {results: results.rows, school: school.rows});
-    });
-    });
+    }); }); }); });
+    // console.log("rates", ratings)
 };
 
 exports.roomrate = (req,res) => {
@@ -60,8 +66,19 @@ exports.roomrate = (req,res) => {
 }
 
 exports.rate = (req,res) => {
-    console.log("body: ", req.body);
 
-    res.render('rateroom', {alert: "Rating added successfully"});
+    const {rating, content} = req.body
+    console.log("rating: ", rating);
+
+    knex('review')
+    .insert({rating: rating,
+        content: content,
+        rid: req.params.rid,
+        sid: req.params.sid})
+    .then(function() { 
+         res.render('rateroom', {sid: req.params.sid, rid: req.params.rid, alert: "Rating added successfully"});
+    })
+
+   
 }
 

@@ -23,17 +23,22 @@
     </nav>
             <div class = "row">
                 <div class="col">
+                {{#if this.room_avg_rating}}
             <input class="rating" max="5" readonly {{!--
                 oninput="this.style.setProperty('--value', `${this.valueAsNumber}`)" --}} step="0.5"
-                style="--value:{{this.r_avg_rating}}" type="range" value="{{this.r_avg_rating}}">
-            </label>
+                style="--value:{{this.room_avg_rating}}" type="range" value="{{this.room_avg_rating}}">
                 </div>
        
         
             <div class = "col">
-                {{#if this.r_avg_rating}}
-                <h5 class = "vertical-center">{{this.r_avg_rating}}/5</h5>
+                <h5 class = "vertical-center">{{this.room_avg_rating}}/5</h5>
+                {{else}}
+                null??
+                <input class="rating" max="5" readonly {{!--
+                oninput="this.style.setProperty('--value', `${this.valueAsNumber}`)" --}} step="0.5"
+                style="--value:0" type="range" value="0">
                 {{/if}}
+                
             </div>
             </div>
             <br />

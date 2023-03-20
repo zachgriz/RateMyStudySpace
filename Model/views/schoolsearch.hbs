@@ -1,5 +1,8 @@
 <div class = "container-search">
-<br /><br />
+<br />
+
+{{!-- Optional Header --}}
+{{!-- <h1>Search for schools</h1> --}} 
 
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
@@ -13,7 +16,7 @@
 
         {{!-- We should validate the search query for the frontend --}}
         <form class="input-group rounded" method="POST" action = "/schoolsearch" novalidate>
-            <input type="text" class="form-control rounded mx-2" placeholder="Search for your school" name = "search">
+            <input type="text" class="form-control rounded mr-2 ml-0" placeholder="Search for your school" name = "search">
             <button class="fa-solid fa-magnifying-glass" id = "search-button"></button>
         </form>
     </div>
@@ -21,8 +24,18 @@
 </div>
 
 
-<br /><br />
+<br />
+{{#if results}}
 
+{{#if (gt count 1)}}
+
+{{#if searchterm}}
+<h2>{{count}} results with "<b class = "searchterm-bold">{{searchterm}}</b>" in their name</h2><br />
+{{/if}}
+
+{{else}}
+<h2>{{count}} result with "<b class = "searchterm-bold">{{searchterm}}</b>" in its name</h2><br />
+{{/if}}
 <table class="table table-hover">
   <thead class = "thead-light">
     <tr>
@@ -33,7 +46,6 @@
     </tr>
   </thead>
   <tbody>
-
     {{#each results}}
     <tr onclick=
 "window.location='/viewschool/{{this.sid}}'" > 
@@ -47,7 +59,9 @@
     {{/each}}
   </tbody>
 </table>
-
+{{else}}
+<h2>No results with "<b class = "searchterm-bold">{{searchterm}}</b>" in their name</h2><br />
+{{/if}}
 <br />
 
         <h5>Don't see the school you're looking for?</h5>

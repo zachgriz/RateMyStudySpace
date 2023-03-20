@@ -18,15 +18,15 @@
     </div>
     {{/if}}
     
-    <form method="POST" action="/{{sid}}/{{rid}}">
+    <form method="POST" action="/{{sid}}/{{rid}}/rate">
         <input class="rating" max="5" oninput="this.style.setProperty('--value', `${this.valueAsNumber}`)" step="0.5"
-            style="--value:0" type="range" value="0">
+            style="--value:0" type="range" value="0" name = "rating">
 
             <br />
         <label for="description-form">
             <h4>Add a Description</h4>
         </label>
-        <textarea class="form-control" id="description-form" rows="5" name="description"></textarea>
+        <textarea class="form-control" id="description-form" rows="5" name="content"></textarea>
         <br /> 
         <div class="d-grid gap-2 col-3 pl-0">
             <button type="submit" class="btn btn-primary">Rate Room</button>

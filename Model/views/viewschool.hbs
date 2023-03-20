@@ -29,12 +29,14 @@
         <tbody>
             {{/results}}
             {{#rooms}}
+
+
             <tr onclick="window.location='/{{this.sid}}/{{this.rid}}'">
                 <td>{{this.bname}}</td>
                 <td>{{this.rno}}</td>
                 <td>{{this.address}}</td>
                 <td>{{this.fits}}</td>
-                <td>{{this.r_avg_rating}}</td>
+                <td>{{this.room_avg_rating}}</td>
 
 
             </tr>
@@ -51,14 +53,22 @@
             <h1 style="font-size: 3em; margin-bottom: 2.5em;">Average Rating:</h1>
 
             <div class="row">
+                {{#if this.school_avg_rating}}
                 <div class="vertical-center">
                     <input class="rating" max="5" readonly {{!--
                         oninput="this.style.setProperty('--value', `${this.valueAsNumber}`)" --}} step="0.5"
-                        style="--value:{{this.s_avg_rating}}" type="range" value="{{this.s_avg_rating}}">
+                        style="--value:{{this.school_avg_rating}}" type="range" value="{{this.school_avg_rating}}">
                 </div>
                 <div class="vertical-center" style="margin-left: 16em;">
-                    <h2 class="vertical-center">{{this.s_avg_rating}}/5</h2>
+                    <h2 class="vertical-center">{{this.school_avg_rating}}/5</h2>
                 </div>
+                {{else}}
+                <div class = "vertical-center">
+                <input class="rating" max="5" readonly {{!--
+                oninput="this.style.setProperty('--value', `${this.valueAsNumber}`)" --}} step="0.5"
+                style="--value:0" type="range" value="0">
+                </div>
+                {{/if}}
             </div>
         </div>
         <div class="col">

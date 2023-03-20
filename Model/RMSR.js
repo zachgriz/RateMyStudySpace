@@ -19,9 +19,17 @@ app.use(bodyParser.json());
 // Parse static files 
 app.use(express.static(path.join(__dirname, 'public')));
 
+const hbs = exphbs.create({
+  helpers: {
+    gt: function( a, b ){
+      return (a > b);
+    }
+  },
+  extname: '.hbs'
+});
 //Templating engine (This is where we would use ejs)
 // app.set("view engine", "ejs");
-app.engine('hbs', exphbs.engine( {extname: '.hbs' }));
+app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 
 //Database connection
