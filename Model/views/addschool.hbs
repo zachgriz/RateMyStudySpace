@@ -1,0 +1,35 @@
+<div class="container-search">
+
+
+    <div class="row addroom-title-row">
+        <div class="vertical-center-left addroom-title">
+            <h1>Add School</h1>
+        </div>
+    </div>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item"><a href="/schoolsearch">Search For Schools</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Add School</li>
+  </ol>
+</nav>
+    {{#if alert}}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{alert}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close" id ="close-alert">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {{/if}}
+
+    <br /><br />
+
+
+    <form class="row needs-validation" method="POST" action="/addschool" novalidate>
+       {{> schoolform}}
+    </form>
+
+    <br /><br /><br /><br />
+
+</div>
