@@ -19,11 +19,11 @@
             <div class="login">
                 <h1 class="text-primary">Login</h1>
                 <div class="login-box">
-                    <form action="submit" class="login-form center" method="get">
-                        <p>Username or Email</p>
-                        <input type="text" name="username" id="username">
-                        <p>Password</p>
-                        <input type="password" name="password" id="password">
+                    <form action="/loginuser" class="login-form center" method="post">
+                        <label for="username">Username</label>
+                        <input required type="text" name="username" id="username">
+                        <label for="password">Password</label>
+                        <input required type="password" name="password" id="password">
                         <button type="submit" class="btn btn-primary">Login</button>
                     </form>
                 </div>
