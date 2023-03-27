@@ -18,8 +18,8 @@
                         <input required type="password" name="password1" id="password1">
                         <label for="password2">Confirm Password</label>
                         <input required type="password" name="password2" id="password2">
-                        {{#if locals.msg}}
-                            <div class="alert alert-danger" role="alert">{{locals.msg}}</div>
+                        {{#if msg}}
+                            <div class="alert alert-danger" role="alert">{{msg}}</div>
                         {{/if}}
                         <button type="submit" class="btn btn-primary">Register</button>
                     </form>

@@ -24,6 +24,9 @@
                         <input required type="text" name="username" id="username">
                         <label for="password">Password</label>
                         <input required type="password" name="password" id="password">
+                        {{#if msg}}
+                            <div class="alert alert-danger" role="alert">{{msg}}</div>
+                        {{/if}}
                         <button type="submit" class="btn btn-primary">Login</button>
                     </form>
                 </div>
