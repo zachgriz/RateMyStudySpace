@@ -6,6 +6,17 @@ const homeController = require('../controllers/homeController');
 const accountController = require('../controllers/accountController');
 const roomController = require('../controllers/roomController');
 
+// // define a session checker which only allows logged in users
+// const sessionChecker = (req, res, next)=>{
+//     if(req.session.user){
+//       next()
+//     }else{
+//       res.redirect("/?msg=raf")
+//     }
+//   }
+  
+//   router.use(sessionChecker)
+
 
 router.get('/', homeController.view);
 
@@ -17,6 +28,8 @@ router.get('/viewschool/:sid', schoolController.schoolview);
 
 router.get('/register', accountController.register);
 router.get('/login', accountController.login);
+router.post('/loginuser', accountController.loginUser)
+router.post('/registeruser', accountController.registerUser)
 
 router.get('/:sid/addroom', roomController.roomform);
 router.post('/:sid/addroom', roomController.roomcreate);
