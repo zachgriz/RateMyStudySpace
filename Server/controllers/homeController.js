@@ -1,3 +1,5 @@
 exports.view = (req, res) => {
-    res.render('home');
+    const user = req.session.user
+    console.log(req.session.user)
+    res.render('home', {showButtons : true, user: user});
 }

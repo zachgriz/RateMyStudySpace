@@ -2,6 +2,7 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const path = require('path');
+const session = require('express-session')
 
 require('dotenv').config();
 
@@ -42,6 +43,15 @@ const pool = require('knex')({
       database : process.env.DB_NAME
     }
   });
+
+//establish session middleware
+app.set('trust proxy', 1) // trust first proxy
+app.use(session({
+  secret: 'super secret key',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false }
+}))
 
 const routes = require('../Server/routes/router');
 app.use('/', routes)
