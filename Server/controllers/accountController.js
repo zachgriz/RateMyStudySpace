@@ -54,3 +54,9 @@ exports.loginUser = (req, res) => {
     })
     
 }
+
+exports.myprofile = (req, res) => {
+
+    const user = req.session.user
+    res.render('myprofile', {user: user})
+}
