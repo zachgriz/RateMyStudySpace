@@ -41,10 +41,26 @@
                         <a href = "/login" type="button" class="btn btn-primary" style="width:150px">Login</a>
                         <a href="/register" class="btn btn-outline-primary" style="width:150px">Register</a>
                     </div>
-                    
                 </div>
                 {{/if}}
             {{/unless}}
+            {{#if user}}
+            <div class="col-3">
+                    <div class="dropdown text-center">
+                        <button
+                        class="btn btn-body-bg dropdown-toggle"
+                        type="button"
+                        data-toggle="dropdown"
+                        aria-expanded="false">
+                        {{user.username}}
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/myprofile">View Profile</a></li>
+                            <li><a class="dropdown-item" href="#">Logout</a></li>
+                        </ul>
+                    </div>
+            </div>
+            {{/if}}
         </div>
 
             {{{body}}}
