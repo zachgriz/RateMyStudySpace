@@ -1,5 +1,7 @@
 .home-landing {
-  background-color: rgb(224, 224, 224);
+  background-image: url('../images/book-bg.jpg');
+  background-size: cover;
+  background-position: center;
   height: 500px;
   position: relative;
 }
@@ -7,6 +9,8 @@
 .landing-headline {
   font-size: 32px;
   font-weight: 700;
+  color: white;
+  text-shadow: #9D4CBA 2px 2px 5px;
 }
 
 .searchbar {
