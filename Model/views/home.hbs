@@ -10,8 +10,9 @@
     <title>Home</title>
 </head>
 <body>
+    
     <div class="container-fluid">
-        <div class="row nav justify-content-between">
+        {{!-- <div class="row nav justify-content-between">
             <div class="col-6">
                 <div class="vertical-center masthead">
                     <img src="images/logo_purple.png" alt="logo_purple" class="nav-logo">            
@@ -26,24 +27,37 @@
                 </div>
                 
             </div>
-        </div>
+        </div> --}}
         <div class="row home-landing">
-            <div class="vertical-center text-center">
+            <div class="center text-center">
                 <p class="landing-headline">Find a study room now</p>
-                <div class="searchbar">
-                    <input type="text" placeholder="search for your school">
+                <form class="searchbar" method = "POST" action = "/schoolsearch" novalidate>
+                    <input type="text" placeholder="search for your school" name = "search">
                     <button class="fa-solid fa-magnifying-glass"></button>
-                </div>
+                </form>
                 
             </div>
         </div>
         <div class="row">
-            <div class="text-center">
-                <p class="regprompt-head">Want to Rate a Room?</p>
-                <p style="font-weight: 500; font-size: 24px;">Make a Rate My Study Room Account</p>
-                <button type="button" class="btn btn-primary btn-lg">Register</button>
+            <div class="col">
+                <div class="text-center">
+                    <p class="regprompt-head">Want to Rate a Room?</p>
+                    <p style="font-weight: 500; font-size: 24px;">Make a Rate My Study Room Account</p>
+                    <a href="/register" type="button" class="btn btn-primary" style="width:150px">Register</a>
+                    </div>
+            </div>
+            <div class = "col">
+                {{!-- <form class="text-center" method = "GET" action = "/schoolsearch"> --}}
+                <div class = "text-center" >
+                    <p class="regprompt-head">Want to View all Rooms?</p>
+                    <p style="font-weight: 500; font-size: 24px;">See Our Selection of Schools</p>
+                    <a href="/schoolsearch" type="button" class="btn btn-primary btn-large" style="width:150px" >View All</a>
+                </div>
+                </div>
             </div>
         </div>
+
+        <br /><br />
     </div>
 
 

@@ -1,28 +1,28 @@
-.register{
+.login{
     width: auto;
 }
-.register h1{
+.login h1{
     font-weight: 600;
 }
-.register-box{
-    height: 550px;
+.login-box{
+    height: 350px;
     width: 450px;
     background-color: rgb(224, 224, 224);
     border-radius: 25px;
 }
-.register-form{
+.login-form{
     position: relative;
     width: 65%;
     height: fit-content;
 }
-.register-form p{
+.login-form label{
     color: black;
     font-size: 18px;
     font-weight: 600;
     margin-bottom: 5px;
     margin-top: 20px;
 }
-.register-form input{
+.login-form input{
     text-indent: 15px;
     margin-top: 0px;
     border: none;
@@ -30,14 +30,14 @@
     border-radius: 15px;
     width: 100%;
 }
-.register-form button{
+.login-form button{
     margin-top: 25px;
     width: 50%;
     position: relative;
     left: 50%;
     transform: translateX(-50%);
 }
-.register a{
+.login a{
     font-size: 22px;
     font-weight: 600;
     text-decoration: none;

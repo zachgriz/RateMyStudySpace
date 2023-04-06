@@ -1,26 +1,26 @@
-.register {
+.login {
   width: auto;
 }
 
-.register h1 {
+.login h1 {
   font-weight: 600;
 }
 
-.register-box {
-  height: 550px;
+.login-box {
+  height: 350px;
   width: 450px;
   background-color: rgb(224, 224, 224);
   border-radius: 25px;
 }
 
-.register-form {
+.login-form {
   position: relative;
   width: 65%;
   height: -moz-fit-content;
   height: fit-content;
 }
 
-.register-form p {
+.login-form label {
   color: black;
   font-size: 18px;
   font-weight: 600;
@@ -28,7 +28,7 @@
   margin-top: 20px;
 }
 
-.register-form input {
+.login-form input {
   text-indent: 15px;
   margin-top: 0px;
   border: none;
@@ -37,7 +37,7 @@
   width: 100%;
 }
 
-.register-form button {
+.login-form button {
   margin-top: 25px;
   width: 50%;
   position: relative;
@@ -45,10 +45,10 @@
   transform: translateX(-50%);
 }
 
-.register a {
+.login a {
   font-size: 22px;
   font-weight: 600;
   text-decoration: none;
   left: 50%;
   transform: translateX(-50%);
-}/*# sourceMappingURL=register.css.map */
+}/*# sourceMappingURL=login.css.map */

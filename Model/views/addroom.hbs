@@ -1,0 +1,44 @@
+<div class="container-search">
+
+{{#each results}}
+
+     <div class="row addroom-title-row">
+                <div class="vertical-center-left addroom-title">
+                    <h1>Add a Study Room</h1>
+                </div>
+            </div>
+
+            <div class="row school-title-row">
+                <div class="vertical-center-left school-title">
+                    <!-- JS {{school}} -->
+                    <h2>{{this.sname}}</h2>
+                </div>
+            </div>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item"><a href="/viewschool/{{this.sid}}">{{this.sname}}</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Add Study Room</li>
+  </ol>
+</nav>
+{{/each}}
+    {{#if alert}}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{alert}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close" id ="close-alert">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {{/if}}
+
+    <br /><br />
+
+
+    <form class="row needs-validation" method="POST" action="./addroom" novalidate>
+       {{> roomform}}
+    </form>
+
+    <br /><br /><br /><br />
+
+</div>
