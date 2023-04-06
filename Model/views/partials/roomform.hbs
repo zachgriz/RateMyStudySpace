@@ -35,11 +35,12 @@
             <textarea class="form-control" id="description-form" rows="5" name="description"></textarea>
 
             <br /><br />
-            <h4> Add Images <a href="#" id="add-image">+</a> </h4>
+            <label for="addimage"><h4>Add Images</h4></label><br>
+            <input type="file" name="addimage" id="addimage" accept="image/png, image/jpeg, image/jpg" multiple>
             <br /><br /><br /><br /><br /><br /><br />
 
             <div class="d-grid gap-2 col-3">
-                <button type="submit" class="btn btn-primary">Add Room</button>
+                <input type="submit" class="btn btn-primary" value="Add Room"></input>
             </div>
 
         </div>
