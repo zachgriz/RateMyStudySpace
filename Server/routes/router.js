@@ -28,8 +28,10 @@ router.get('/viewschool/:sid', schoolController.schoolview);
 
 router.get('/register', accountController.register);
 router.get('/login', accountController.login);
-router.post('/loginuser', accountController.loginUser)
-router.post('/registeruser', accountController.registerUser)
+router.post('/loginuser', accountController.loginUser);
+router.post('/registeruser', accountController.registerUser);
+
+router.get('/getimage/:id', roomController.getImage);
 
 router.get('/:sid/addroom', roomController.roomform);
 router.post('/:sid/addroom', roomController.roomcreate);

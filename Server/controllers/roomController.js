@@ -30,7 +30,6 @@ exports.roomform = (req, res) => {
 //Add new room
 exports.roomcreate = (req, res) => {
     const {buildingname, roomno, address, fits, description} = req.body;
-    
     knex('room')
     .insert ({bname: buildingname,
             rno: roomno,
@@ -38,12 +37,33 @@ exports.roomcreate = (req, res) => {
             address: address,
             description: description, 
             sid: req.params.sid})
+    .returning('rid')
+    .then(
+        function(rid) {
+            if (req.files) {
+                console.log(rid[0])
+                for (file of req.files.addimage) {
+                    console.log(file.name);
+                    console.log(typeof(file.data));
+                    knex('image').insert ({
+                        roomid: rid[0].rid,
+                        imagename: file.name,
+                        data: file.data
+                    }).then(() => {
+                        console.log('Image added')
+                    })
+                }
+            }
+        }
+    )
     .then(function() {
         return knex.raw("select * from school where sid = ?", req.params.sid) })
     .then(function(results) {
         
         res.render('addroom', {results: results.rows, alert : "Room added successfully. "} );
     });
+
+    
 };
 
 //View rate/room
@@ -89,3 +109,14 @@ exports.rate = (req,res) => {
    
 }
 
+exports.getImage = (req, res) => {
+    console.log('in image getter')
+    knex.select('*').from('image').where({imageid: req.params.id}).first().then( (result) => {
+        if(result)
+        {
+            res.end(result.data)
+        } else {
+            res.end('No image found')
+        }
+    })
+}
