@@ -64,7 +64,7 @@
                 <div class="carousel-inner">
                     {{#each pics}}
                         <div class="carousel-item {{#if @first}}active {{/if}}">
-                            <img src="data:image/png;base64,{{data}}" class="d-block w-100" alt="{{imagename}}">
+                            <img src="data:image/png;base64,{{data}}" class="d-block w-80" alt="{{imagename}}" style="object-fit: cover; max-height: 400px; width:100%;">
                         </div>
                     {{/each}}
                 </div>
