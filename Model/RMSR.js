@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // Handle file uploads
-app.use(fileUpload());
+// app.use(fileUpload());
 
 // Parse static files 
 app.use(express.static(path.join(__dirname, 'public')));

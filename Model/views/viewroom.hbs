@@ -58,20 +58,15 @@
             <a href="/{{this.sid}}/{{this.rid}}/rate" type="button" class="btn btn-primary">Rate This Room</a>
         </div>
         
+        {{/results}}
         <div class="col">
             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="/images/logo_purple.png" class="d-block w-70" alt="...">
-                    </div>
-                    {{/results}}
                     {{#each pics}}
-                        <div class="carousel-item">
-                            <img src="/images/logo_purple.png" class="d-block w-100" alt="Room image">
-                            <p>{{this.imagename}}</p>
+                        <div class="carousel-item {{#if @first}}active {{/if}}">
+                            <img src="data:image/png;base64,{{data}}" class="d-block w-100" alt="{{imagename}}">
                         </div>
                     {{/each}}
-                    {{#results}}
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -83,6 +78,7 @@
                 </a>
             </div>
         </div>
+        {{#results}}
     </div>
 
     <br /> <br />

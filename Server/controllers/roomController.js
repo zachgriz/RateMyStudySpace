@@ -11,6 +11,8 @@ const knex = require('knex')({
     }
 });
 
+
+
 // View all rooms at school
 exports.view = (req, res) => {
     
@@ -76,6 +78,10 @@ exports.roomview = (req, res) => {
         // knex.raw("UPDATE room SET room_avg_rating = ? WHERE room.rid = ? and room.sid = ?", [rating.rows[0].round, req.params.rid, req.params.sid]).then(function(update){
             knex.raw("select * from image where roomid = ?", req.params.rid)
             .then(function(pics) {
+                for (pic of pics.rows) {
+                    var base64 = Buffer.from(pic.data).toString('base64')
+                    pic.data = base64
+                }
                 console.log(pics.rows)
                 res.render('viewroom', {results: results.rows, school: school.rows, pics: pics.rows});
             })
