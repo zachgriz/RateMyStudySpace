@@ -46,7 +46,6 @@ exports.roomcreate = (req, res) => {
                 console.log(rid[0])
                 for (file of req.files.addimage) {
                     console.log(file.name);
-                    console.log(typeof(file.data));
                     knex('image').insert ({
                         roomid: rid[0].rid,
                         imagename: file.name,
@@ -82,7 +81,6 @@ exports.roomview = (req, res) => {
                     var base64 = Buffer.from(pic.data).toString('base64')
                     pic.data = base64
                 }
-                console.log(pics.rows)
                 res.render('viewroom', {results: results.rows, school: school.rows, pics: pics.rows});
             })
     }); }); //}); });

@@ -39,17 +39,21 @@ exports.registerUser = (req, res) => {
 exports.loginUser = (req, res) => {
     
     knex.select('*').from('user').where({username: req.body.username}).first().then( (result) => {
-        if(bcrypt.compareSync(req.body.password, result.passwordHash))
-        {
-            req.session.user = {
-                username: result.username,
-                email: result.email,
-                userid: result.userid
-            }
+        if (result) {
+            if(bcrypt.compareSync(req.body.password, result.passwordHash))
+            {
+                req.session.user = {
+                    username: result.username,
+                    email: result.email,
+                    userid: result.userid
+                }
 
-            res.redirect('/')
+                res.redirect('/')
+            } else {
+                res.render('login', {msg: "Incorrect password"})
+            }
         } else {
-            res.render('login', {msg: "Incorrect password"})
+            res.render('login', {msg: "No user"})
         }
     })
     
