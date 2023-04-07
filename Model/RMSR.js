@@ -2,7 +2,8 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const path = require('path');
-const session = require('express-session')
+const session = require('express-session');
+const fileUpload = require('express-fileupload');
 
 require('dotenv').config();
 
@@ -16,6 +17,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // Parse json
 app.use(bodyParser.json());
+
+// Handle file uploads
+// app.use(fileUpload());
 
 // Parse static files 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -54,6 +58,10 @@ app.use(session({
 }))
 
 const routes = require('../Server/routes/router');
+
+// not sure if this is correct but its the only way i was able to get the file uploader to work
+//routes.use(fileUpload())
+
 app.use('/', routes)
 
 app.listen(port, () => console.log('listening on port ' + port));
