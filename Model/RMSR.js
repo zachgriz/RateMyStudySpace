@@ -60,7 +60,7 @@ app.use(session({
 const routes = require('../Server/routes/router');
 
 // not sure if this is correct but its the only way i was able to get the file uploader to work
-routes.use(fileUpload())
+//routes.use(fileUpload())
 
 app.use('/', routes)
 

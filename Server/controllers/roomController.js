@@ -74,7 +74,10 @@ exports.roomview = (req, res) => {
         //  console.log("rating: ", rating.rows[0].round)
         knex.raw("select * from school where school.sid = ?", req.params.sid).then(function(school){
         // knex.raw("UPDATE room SET room_avg_rating = ? WHERE room.rid = ? and room.sid = ?", [rating.rows[0].round, req.params.rid, req.params.sid]).then(function(update){
-        res.render('viewroom', {results: results.rows, school: school.rows});
+            knex.raw('select * from image where roomid = ?', req.params.rid)
+            .then(function(pics) {
+                res.render('viewroom', {results: results.rows, school: school.rows, pics: pics.rows});
+            })
     }); }); //}); });
     // console.log("rates", ratings)
 };
