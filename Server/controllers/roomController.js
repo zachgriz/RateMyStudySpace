@@ -81,8 +81,13 @@ exports.roomview = (req, res) => {
                     var base64 = Buffer.from(pic.data).toString('base64')
                     pic.data = base64
                 }
-                res.render('viewroom', {results: results.rows, school: school.rows, pics: pics.rows});
+
+                knex.raw("select * from review where rid = ?", req.params.rid)
+                .then(function(reviews) {
+                    res.render('viewroom', {results: results.rows, school: school.rows, pics: pics.rows, reviews:reviews.rows});
+                })
             })
+            
     }); }); //}); });
     // console.log("rates", ratings)
 };
@@ -110,21 +115,10 @@ exports.rate = (req,res) => {
         knex.raw("SELECT count(*) FROM review where rid = ? and sid = ?", [req.params.rid, req.params.sid]).then(function (num_reviews){
             console.log("nr: ", num_reviews.rows[0].count);
         knex.raw("UPDATE room SET num_reviews = ? WHERE sid = ? and rid = ?", [num_reviews.rows[0].count, req.params.sid, req.params.rid]).then(function (update_reviews){
-            res.render('rateroom', {sid: req.params.sid, rid: req.params.rid, alert: "Rating added successfully"});
+            res.redirect('/'+req.params.sid+'/'+req.params.rid);
     }); }); });
     }); }); }); });
 
    
 }
 
-exports.getImage = (req, res) => {
-    console.log('in image getter')
-    knex.select('*').from('image').where({imageid: req.params.id}).first().then( (result) => {
-        if(result)
-        {
-            res.end(result.data)
-        } else {
-            res.end('No image found')
-        }
-    })
-}

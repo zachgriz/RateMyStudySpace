@@ -78,12 +78,16 @@
                 </a>
             </div>
         </div>
-        {{#results}}
     </div>
 
     <br /> <br />
     <h5>Ratings</h5>
-
-    {{/results}}
+    <ul style="list-style-type: none;">
+        {{#each reviews}}
+            <li style="border-bottom: 1px solid gray; margin:5px;">
+                <div><h4 style="color: #9D4CBA;">{{rating}}<i class="fa-sharp fa-solid fa-star"></i></h4><p>{{content}}</p></div>
+            </li>
+        {{/each}}
+    </ul>
     <br /> <br />
 </div>
