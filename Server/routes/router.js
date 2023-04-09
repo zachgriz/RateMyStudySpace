@@ -5,6 +5,7 @@ const schoolController = require('../controllers/schoolController');
 const homeController = require('../controllers/homeController');
 const accountController = require('../controllers/accountController');
 const roomController = require('../controllers/roomController');
+const fileUpload = require('express-fileupload');
 
 // // define a session checker which only allows logged in users
 // const sessionChecker = (req, res, next)=>{
@@ -17,6 +18,7 @@ const roomController = require('../controllers/roomController');
   
 //   router.use(sessionChecker)
 
+router.use(fileUpload())
 
 router.get('/', homeController.view);
 
@@ -31,6 +33,8 @@ router.get('/login', accountController.login);
 router.post('/loginuser', accountController.loginUser)
 router.post('/registeruser', accountController.registerUser)
 router.get('/myprofile', accountController.myprofile)
+
+//router.get('/getimage/:id', roomController.getImage);
 
 router.get('/:sid/addroom', roomController.roomform);
 router.post('/:sid/addroom', roomController.roomcreate);
