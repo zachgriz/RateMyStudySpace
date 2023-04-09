@@ -12,14 +12,23 @@
                     <form action="/registeruser" class="register-form center" method="post">
                         <label for="username">Username</label>
                         <input required type="text" name="username" id="username">
+                        {{#if msg1}}
+                            <div class="alert alert-danger" role="alert" 
+                            style="height:20px; line-height:20px; padding: 0px 10px;">{{msg1}}</div>
+                        {{/if}}
                         <label for="email">Email</label>
                         <input required type="email" name="email" id="email">
+                        {{#if msg2}}
+                            <div class="alert alert-danger" role="alert"
+                            style="height:20px; line-height:20px; padding: 0px 10px;">{{msg2}}</div>
+                        {{/if}}
                         <label for="password1">Password</label>
                         <input required type="password" name="password1" id="password1">
                         <label for="password2">Confirm Password</label>
                         <input required type="password" name="password2" id="password2">
-                        {{#if msg}}
-                            <div class="alert alert-danger" role="alert">{{msg}}</div>
+                        {{#if msg3}}
+                            <div class="alert alert-danger" role="alert"
+                            style="height:20px; line-height:20px; padding: 0px 10px;">{{msg3}}</div>
                         {{/if}}
                         <button type="submit" class="btn btn-primary">Register</button>
                     </form>
