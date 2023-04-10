@@ -1,0 +1,46 @@
+<div class="container-fluid">
+
+    <br><br>
+    <div class="row">
+        <div class="col-10">
+           {{> @partial-block}}
+        </div>
+        <div class="col-2">
+            <div id="accordion">
+                <div class="card">
+                    <div class="card-header" id="headingTwo">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
+                                aria-expanded="false" aria-controls="collapseTwo" style = "text-decoration: none;">
+                                <b class = "text-dark">Site</b>
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                        <div class="card-body">
+                            <a  href = "#">About</a><br>
+                            <a  href = "#">FAQ</a><br>
+                        </div>
+                    </div>
+                      
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingThree">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree"
+                                aria-expanded="false" aria-controls="collapseThree" style = "text-decoration: none;">
+                                <b class = "text-dark">Legal</b>
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                        <div class="card-body">
+                            <a  href = "#">Terms of Service</a><br>
+                            <a  href = "#">Privacy Policy</a><br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
