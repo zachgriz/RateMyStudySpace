@@ -43,7 +43,6 @@ exports.roomcreate = (req, res) => {
     .then(
         function(rid) {
             if (req.files) {
-                console.log(rid[0])
                 for (file of req.files.addimage) {
                     console.log(file.name);
                     knex('image').insert ({
@@ -103,10 +102,12 @@ exports.rate = (req,res) => {
     const {rating, content} = req.body
 
     knex('review')
-    .insert({rating: rating,
+    .insert({
+        rating: rating,
         content: content,
         rid: req.params.rid,
-        sid: req.params.sid})
+        sid: req.params.sid,
+        username: req.session.user.username})
     .then(function() { 
         knex.raw("SELECT ROUND(avg(rating), 1) FROM(SELECT * FROM review, room WHERE room.rid = review.rid and room.sid = review.sid and room.rid = ? and rating IS NOT NULL) as ratings", req.params.rid).then(function(rating){
         knex.raw("UPDATE room SET room_avg_rating = ? WHERE room.rid = ? and room.sid = ?", [rating.rows[0].round, req.params.rid, req.params.sid]).then(function(update){

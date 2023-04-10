@@ -21,71 +21,35 @@ exports.login = (req, res) => {
 }
 
 exports.registerUser = (req, res) => {
-    let uniqueUsername
-    let uniqueEmail
-    knex.select('*').from('user').where({username: req.body.username}).first().then( (user) => {
-        if (!user) {
-            uniqueUsername = true;
-        } else { uniqueUsername = false; }
+    if(req.body.password1 === req.body.password2) {
+        knex('user').insert(
+            {
+                username: req.body.username, 
+                email: req.body.email, 
+                passwordHash: bcrypt.hashSync(req.body.password1)
+            })
+            .then(() => {
+                console.log('user inserted succesfully')
+                res.redirect('login')
+            })
+            .catch(e => {
+                //console.log(e)
+                // Example for Postgres, where code 23505 is a unique_violation
+                if (e.code && e.code === '23505') {
+                    res.locals.msg1 = 'Username or email already exists'
+                    res.locals.msg2 = 'Username or email already exists'
 
-        knex.select('*').from('user').where({email: req.body.email}).first().then( (user) => {
-            if (!user) {
-                uniqueEmail = true;
-            } else { uniqueEmail = false; }
-
-            // insert user  (unique username, email, and passwords match)
-            if(uniqueUsername && uniqueEmail && (req.body.password1 === req.body.password2)) {
-                knex('user').insert(
-                    {
-                        username: req.body.username, 
-                        email: req.body.email, 
-                        passwordHash: bcrypt.hashSync(req.body.password1)
-                    }).then(console.log("User added successfully"))
-                
-                res.render('home')
-
-            // passwords don't match
-            } else if (uniqueUsername && uniqueEmail && !(req.body.password1 === req.body.password2)){
-                res.locals.msg3 = 'Passwords do not match'
-                res.render('register', {msg3: 'Passwords do not match'})
-
-            // username is not unique
-            } else if (!uniqueUsername && uniqueEmail && (req.body.password1 === req.body.password2)){
-                res.locals.msg1 = 'Username already exists'
-                res.render('register', {msg1: 'Username already exsits'})
-
-            // email is not unique
-            } else if (uniqueUsername && !uniqueEmail && (req.body.password1 === req.body.password2)){
-                res.locals.msg2 = 'Email already exists'
-                res.render('register', {msg2: 'Email already exsits'})
-
-            // username and email are not unique
-            }  else if (!uniqueUsername && !uniqueEmail && (req.body.password1 === req.body.password2)) {
-                res.locals.msg1 = 'Username already exists'
-                res.locals.msg2 = 'Email already exists'
-                res.render('register', {msg1: 'Username already exsits', msg2: 'Email already exists'})
-
-            // email is not unique and passwords don't match
-            } else if (uniqueUsername && !uniqueEmail && !(req.body.password1 === req.body.password2)) {
-                res.locals.msg2 = 'Email already exists'
-                res.locals.msg3 = 'Passwords do not match'
-                res.render('register', {msg2: 'Email already exists', msg3: 'Passwords do not match'})
-
-            // username is not unique and passwords don't match
-            } else if (!uniqueUsername && uniqueEmail && !(req.body.password1 === req.body.password2)) {
-                res.locals.msg1 = 'Username already exists'
-                res.locals.msg3 = 'Passwords do not match'
-                res.render('register', {msg1: 'Username already exsits', msg3: 'Passwords do not match'})
-            }
-            else {
-                res.locals.msg1 = 'Username already exists'
-                res.locals.msg2 = 'Email already exists'
-                res.locals.msg3 = 'Passwords do not match'
-                res.render('register', {msg1: 'Username already exsits', msg2: 'Email already exists', msg3: 'Passwords do not match'})
-            }
-        })
-    })
-
+                    res.render('register')
+                    return
+                }
+            })
+            
+        
+        
+    } else {
+        res.locals.msg3 = 'Passwords do not match'
+        res.render('register', {msg: 'Passwords do not match'})
+    }
 }
 
 exports.loginUser = (req, res) => {
@@ -114,5 +78,17 @@ exports.loginUser = (req, res) => {
 exports.myprofile = (req, res) => {
 
     const user = req.session.user
-    res.render('myprofile', {user: user})
+    knex.select('*').from('review').where({username:user.username}).then((result) => {
+        console.log(result)
+        res.render('myprofile', {user: user, reviews: result })
+    })
+    
+}
+
+exports.logout = (req, res) => {
+    if (req.session.user)
+    {
+        req.session.user = null
+        res.redirect('/')
+    }
 }

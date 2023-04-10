@@ -33,6 +33,7 @@ router.get('/login', accountController.login);
 router.post('/loginuser', accountController.loginUser)
 router.post('/registeruser', accountController.registerUser)
 router.get('/myprofile', accountController.myprofile)
+router.get('/logout', accountController.logout)
 
 //router.get('/getimage/:id', roomController.getImage);
 
