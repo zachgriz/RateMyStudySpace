@@ -22,15 +22,17 @@ exports.view = (req, res) => {
 
 //Create a new study room
 exports.roomform = (req, res) => {
+    const user = req.session.user
     knex
         knex.raw("select * from school where sid = ?", req.params.sid)
         .then((results) => {
-            res.render('addroom', { results: results.rows });
+            res.render('addroom', { results: results.rows, showButtons : true, user: user});
         });
 }
 
 //Add new room
 exports.roomcreate = (req, res) => {
+    const user = req.session.user
     const {buildingname, roomno, address, fits, description} = req.body;
     knex('room')
     .insert ({bname: buildingname,
@@ -60,7 +62,7 @@ exports.roomcreate = (req, res) => {
         return knex.raw("select * from school where sid = ?", req.params.sid) })
     .then(function(results) {
         
-        res.render('addroom', {results: results.rows, alert : "Room added successfully. "} );
+        res.render('addroom', {results: results.rows, alert : "Room added successfully. ", showButtons: true, user: user} );
     });
 
     
@@ -68,7 +70,7 @@ exports.roomcreate = (req, res) => {
 
 //View rate/room
 exports.roomview = (req, res) => {
-
+    const user = req.session.user
     knex.raw("select * from school, room where school.sid = room.sid and room.sid = ? and room.rid = ?", [req.params.sid, req.params.rid]).then(function(results){
     // knex.raw("SELECT ROUND(avg(rating), 1) FROM(SELECT * FROM review, room WHERE room.rid = review.rid and room.sid = review.sid and room.rid = ? and rating IS NOT NULL) as ratings", req.params.rid).then(function(rating){
         //  console.log("rating: ", rating.rows[0].round)
@@ -83,7 +85,7 @@ exports.roomview = (req, res) => {
 
                 knex.raw("select * from review where rid = ?", req.params.rid)
                 .then(function(reviews) {
-                    res.render('viewroom', {results: results.rows, school: school.rows, pics: pics.rows, reviews:reviews.rows});
+                    res.render('viewroom', {results: results.rows, school: school.rows, pics: pics.rows, reviews:reviews.rows, showButtons: true, user: user});
                 })
             })
             
@@ -93,12 +95,13 @@ exports.roomview = (req, res) => {
 
 exports.roomrate = (req,res) => {
     // console.log('params: ', req.params);
+    const user = req.session.user
 
-    res.render('rateroom', {sid: req.params.sid, rid: req.params.rid});
+    res.render('rateroom', {sid: req.params.sid, rid: req.params.rid, showButtons: true, user: user});
 }
 
 exports.rate = (req,res) => {
-
+    const user = req.session.user
     const {rating, content} = req.body
 
     knex('review')

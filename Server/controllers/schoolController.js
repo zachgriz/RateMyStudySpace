@@ -14,12 +14,14 @@ const knex = require('knex')({
 // View all schools in table
 exports.view = (req, res) => {
     // Perform database query
+    const user = req.session.user
+
     knex
         .select()
         .from("school")
         .orderBy("numrooms", "desc")
         .then((results) => {
-            res.render('schoolsearch', { results: results});
+            res.render('schoolsearch', { results: results, showButtons : true, user: user});
         });
 }
 
@@ -27,10 +29,11 @@ exports.view = (req, res) => {
 // Both schools and query are set to lowercase to avoid case matching.
 exports.find = (req, res) => {
     const searchterm = req.body.search
+    const user = req.session.user
 
     knex.raw("SELECT * FROM school WHERE lower(sname) LIKE lower('%" + searchterm + "%') ORDER BY numrooms DESC")
     .then((results) => {
-        res.render('schoolsearch', { results: results.rows, count: results.rows.length, searchterm: searchterm });
+        res.render('schoolsearch', { results: results.rows, count: results.rows.length, searchterm: searchterm, showButtons : true, user: user });
 
     });
 }
@@ -43,7 +46,8 @@ exports.schoolform = (req, res) => {
 //Add new school
 exports.schoolcreate = (req, res) => {
     const {schoolname, countryname, statename, cityname} = req.body;
-    
+    const user = req.session.user
+
     knex
     .insert ({sname: schoolname,
             country: countryname,
@@ -52,19 +56,21 @@ exports.schoolcreate = (req, res) => {
     })
     .into("school")
     .then((results) => {
-        res.render('addschool', {alert : "School added successfully. "} );
+        res.render('addschool', {alert : "School added successfully. ", showButtons: true, user: user} );
     });
 };
 
 // View selected school. Chains together multiple queries with knex by using .then(). Finally, pass the results of all queries to the school view. Select school, select all room for given school, and select no. of rooms for given school.
 exports.schoolview = (req, res) => {
+    const user = req.session.user
+
     knex.raw("select * from school where sid = ?", req.params.sid).then(function (schools) {
         knex.raw("select * from room, school where room.sid = school.sid and room.sid = ?", req.params.sid).then(function (rooms) {
             knex.raw("select count(*) from room, school where room.sid = school.sid and room.sid = ?", req.params.sid).then(function (count) {
                 knex.raw("update school set numrooms = (select count(*) from room, school where room.sid = school.sid and room.sid = ?) where school.sid = ?", [req.params.sid, req.params.sid])
                     .then(function (result) {
                         
-                        res.render('viewschool', { results: schools.rows, rooms: rooms.rows, count: count.rows });
+                        res.render('viewschool', { results: schools.rows, rooms: rooms.rows, count: count.rows, showButtons : true, user: user });
                     });
                 });
             });

@@ -1,9 +1,14 @@
 .home-landing{
+    background-image: url('../images/book-bg.jpg');
+    background-size: cover;
+    background-position: center;
     background-color: rgb(224, 224, 224);
     height: 500px;
     position: relative;
 }
 .landing-headline{
+    color: white;
+    text-shadow: #9D4CBA 2px 2px 5px;
     font-size: 32px;
     font-weight: 700;
 }

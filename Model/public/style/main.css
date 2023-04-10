@@ -5804,8 +5804,7 @@ textarea.form-control-lg {
   float: left;
   width: 100%;
   margin-right: -100%;
-  -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
+  backface-visibility: hidden;
   transition: transform 0.6s ease-in-out;
 }
 @media (prefers-reduced-motion: reduce) {
@@ -10862,4 +10861,32 @@ textarea.form-control-lg {
   margin: 0px;
   font-size: 24px;
   font-weight: 700;
+}
+
+.row-footer {
+  background-color: #9D4CBA;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
+
+.footer-item {
+  text-align: center;
+}
+
+.footer-button {
+  color: black;
+  text-decoration: none;
+}
+
+.footer-button:hover {
+  color: white;
+  text-decoration: none;
+}
+
+.footer-logo {
+  width: 5em;
 }/*# sourceMappingURL=main.css.map */

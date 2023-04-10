@@ -5,6 +5,7 @@ const schoolController = require('../controllers/schoolController');
 const homeController = require('../controllers/homeController');
 const accountController = require('../controllers/accountController');
 const roomController = require('../controllers/roomController');
+const forumController = require('../controllers/forumController');
 const fileUpload = require('express-fileupload');
 
 // // define a session checker which only allows logged in users
@@ -43,5 +44,9 @@ router.get('/:sid/:rid', roomController.roomview);
 router.get('/:sid/:rid/rate', roomController.roomrate);
 router.post('/:sid/:rid/rate', roomController.rate);
 
+router.get('/termsofservice', forumController.tos);
+router.get('/privacypolicy', forumController.pp);
+router.get('/about', forumController.about);
+router.get('/faq', forumController.faq);
 
 module.exports = router;
