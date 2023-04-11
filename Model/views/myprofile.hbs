@@ -34,6 +34,13 @@
             <div class="col-6">
                 <div class="my-spaces">
                     <h2>My Spaces</h2>
+                    <ul style="list-style-type: none;">
+                        {{#each rooms}}
+                        <li style="border-bottom: 1px solid gray; margin:5px;">
+                            <div><h4><a style="color: #212529;" href="/{{sid}}/{{rid}}">{{bname}} {{rno}}</a></h4></div>
+                        </li>
+                        {{/each}}
+                    </ul>
                 </div>
             </div>
             <div class="col-6">

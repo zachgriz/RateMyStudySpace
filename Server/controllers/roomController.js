@@ -33,6 +33,7 @@ exports.roomform = (req, res) => {
 //Add new room
 exports.roomcreate = (req, res) => {
     const user = req.session.user
+    console.log(user.username)
     const {buildingname, roomno, address, fits, description} = req.body;
     knex('room')
     .insert ({bname: buildingname,
@@ -40,7 +41,8 @@ exports.roomcreate = (req, res) => {
             fits: fits,
             address: address,
             description: description, 
-            sid: req.params.sid})
+            sid: req.params.sid,
+            username: user.username})
     .returning('rid')
     .then(
         function(rid) {
