@@ -18,7 +18,7 @@
     
 
         <div class="col-6">
-            <form action="/viewschool/{{this.sid}}" method="POST">
+            <form class="filter-form" action="/viewschool/{{this.sid}}" method="POST">
             {{/results}}
                 <select class="rounded" name="building" id="building-filter">
                     <option value="">Building</option>
@@ -47,7 +47,7 @@
                     <option value="bname">Building A-Z</option>
                     <option value="fits">Size</option>
                 </select>
-                <input class="rounded" type="submit" value="Apply">
+                <input class="apply btn btn-primary rounded" type="submit" value="Apply">
             </form>
         </div>
     </div>
