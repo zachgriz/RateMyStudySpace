@@ -4,16 +4,54 @@
     {{#results}}
     <h1>{{this.sname}}</h1>
     <h4>{{this.city}}, {{this.state}}</h4>
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/">Home</a></li>
-            <li class="breadcrumb-item"><a href="/schoolsearch">Search For Schools</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{this.sname}}</li>
-        </ol>
-    </nav>
 
+    <div class="row">
+        <div class="col">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/schoolsearch">Search For Schools</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{this.sname}}</li>
+                </ol>
+            </nav>
+        </div>
+    
 
-   
+        <div class="col-6">
+            <form action="/viewschool/{{this.sid}}" method="POST">
+            {{/results}}
+                <select class="rounded" name="building" id="building-filter">
+                    <option value="">Building</option>
+                    {{#each buildings}}
+                    <option value="{{this.bname}}">{{this.bname}}</option>
+                    {{/each}}
+                    </select>
+
+                <select class="rounded" name="fits" id="fits-filter">
+                    <option value="">Fits</option>
+                    <option value="0">less than 5</option>
+                    <option value="5">5-10</option>
+                    <option value="10">greater than 10</option>
+                </select>
+
+                <select class="rounded" name="rating" id="rating-filter">
+                    <option value="">Average Rating</option>
+                    <option value="4">>=4</option>
+                    <option value="3">>=3</option>
+                    <option value="2">>=2</option>
+                </select>
+
+                <select class="rounded" name="sortby" id="sortby">
+                    <option value="">Sort By</option>
+                    <option value="room_avg_rating">Rating</option>
+                    <option value="bname">Building A-Z</option>
+                    <option value="fits">Size</option>
+                </select>
+                <input class="rounded" type="submit" value="Apply">
+            </form>
+        </div>
+    </div>
+
 
     <br />
     <table class="table table-hover">
@@ -28,7 +66,7 @@
             </tr>
         </thead>
         <tbody>
-            {{/results}}
+
             {{#rooms}}
 
 
