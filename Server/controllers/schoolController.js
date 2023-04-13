@@ -75,20 +75,24 @@ exports.find = (req, res) => {
     const user = req.session.user
 
     let sortby = req.body.sortby
-    if (sortby === '') { sortby = 'numrooms'}
+    console.log(sortby)
+    if (sortby === '') { sortby = 'numrooms DESC'}
+    if (sortby === 'school_avg_rating') { sortby = 'school_avg_rating is NULL'}
 
-    knex.raw("SELECT * FROM school WHERE lower(sname) LIKE lower('%" + searchterm + "%') ORDER BY " + sortby + " ASC")
+    knex.raw("SELECT * FROM school WHERE lower(sname) LIKE lower('%" + searchterm + "%') ORDER BY " + sortby)
     .then((results) => {
 
         results.rows = filterByState(results.rows, req.body.state)
         results.rows = filterByCity(results.rows, req.body.city)
         results.rows = filterByRating(results.rows, req.body.rating)
 
-        const states = getFilterList(results.rows, ["state"])
-        const cities =  getFilterList(results.rows, ["city"])
+        knex.raw("SELECT city,state from school").then((listItems) => {
+        const states = getFilterList(listItems.rows, ["state"])
+        const cities =  getFilterList(listItems.rows, ["city"])
 
         res.render('schoolsearch', { results: results.rows, count: results.rows.length, searchterm: searchterm, showButtons : true, user: user,
                                         states: states, cities: cities});
+        });
     });  
 }
 
