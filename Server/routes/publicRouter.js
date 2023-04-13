@@ -26,6 +26,7 @@ router.get('/schoolsearch', schoolController.view);
 router.post('/schoolsearch', schoolController.find);
 
 router.get('/viewschool/:sid', schoolController.schoolview);
+router.post('/viewschool/:sid', schoolController.schoolviewfilter)
 
 router.get('/register', accountController.register);
 router.get('/login', accountController.login);
