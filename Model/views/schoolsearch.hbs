@@ -12,11 +12,41 @@
 </nav>
 
 <div class="row home-landing">
-    <div class="col-5">
+    <div class="col-10">
 
         {{!-- We should validate the search query for the frontend --}}
         <form class="input-group rounded" method="POST" action = "/schoolsearch" novalidate>
             <input type="text" class="form-control rounded mr-2 ml-0" placeholder="Search for your school" name = "search">
+
+                  <select class="rounded" name="state" id="state-filter">
+                    <option value="">State</option>
+                    {{#each states}}
+                    <option value="{{this.state}}">{{this.state}}</option>
+                    {{/each}}
+                  </select>
+
+                  <select class="rounded" name="city" id="city-filter">
+                    <option value="">City</option>
+                    {{#each cities}}
+                    <option value="{{this.city}}">{{this.city}}</option>
+                    {{/each}}
+                  </select>
+
+                  <select class="rounded" name="rating" id="rating-filter">
+                    <option value="">Average Rating</option>
+                    <option value="4">>=4</option>
+                    <option value="3">>=3</option>
+                    <option value="2">>=2</option>
+                    
+                  </select>
+
+                  <select class="rounded" name="sortby" id="sortby">
+                    <option value="">Sort By</option>
+                    <option value="school_avg_rating">Rating</option>
+                    <option value="sname">Name A-Z</option>
+                    <option value="city">City A-Z</option>
+                  </select>
+
             <button class="fa-solid fa-magnifying-glass" id = "search-button"></button>
         </form>
     </div>

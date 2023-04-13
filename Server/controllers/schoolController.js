@@ -11,6 +11,47 @@ const knex = require('knex')({
     }
 });
 
+function getFilterList(array, uniqProperties) {
+    return array.filter(
+        (value, index, self) =>
+            index === self.findIndex(
+                t => uniqProperties.every(property => t[property] === value[property])
+            )
+  )
+}
+
+function filterByState(array, filterConstraint) {
+    if (filterConstraint !== '') {
+        return array.filter(
+            (value) => value.state === filterConstraint
+        )
+    } else {
+        return array
+    }
+}
+
+function filterByCity(array, filterConstraint) {
+    if (filterConstraint !== '') {
+        return array.filter(
+            (value) => value.city === filterConstraint
+        )
+    } else {
+        return array
+    }
+}
+
+function filterByRating(array, filterConstraint) {
+    if (filterConstraint !== '') {
+        return array.filter(
+            (value) => value.school_avg_rating >= filterConstraint
+        )
+    } else {
+        return array
+    }
+}
+
+
+
 // View all schools in table
 exports.view = (req, res) => {
     // Perform database query
@@ -21,7 +62,9 @@ exports.view = (req, res) => {
         .from("school")
         .orderBy("numrooms", "desc")
         .then((results) => {
-            res.render('schoolsearch', { results: results, showButtons : true, user: user});
+            const states = getFilterList(results, ["state"])
+            const cities =  getFilterList(results, ["city"])
+            res.render('schoolsearch', { results: results, showButtons : true, user: user, states: states, cities: cities});
         });
 }
 
@@ -31,11 +74,22 @@ exports.find = (req, res) => {
     const searchterm = req.body.search
     const user = req.session.user
 
-    knex.raw("SELECT * FROM school WHERE lower(sname) LIKE lower('%" + searchterm + "%') ORDER BY numrooms DESC")
-    .then((results) => {
-        res.render('schoolsearch', { results: results.rows, count: results.rows.length, searchterm: searchterm, showButtons : true, user: user });
+    let sortby = req.body.sortby
+    if (sortby === '') { sortby = 'numrooms'}
 
-    });
+    knex.raw("SELECT * FROM school WHERE lower(sname) LIKE lower('%" + searchterm + "%') ORDER BY " + sortby + " ASC")
+    .then((results) => {
+
+        results.rows = filterByState(results.rows, req.body.state)
+        results.rows = filterByCity(results.rows, req.body.city)
+        results.rows = filterByRating(results.rows, req.body.rating)
+
+        const states = getFilterList(results.rows, ["state"])
+        const cities =  getFilterList(results.rows, ["city"])
+
+        res.render('schoolsearch', { results: results.rows, count: results.rows.length, searchterm: searchterm, showButtons : true, user: user,
+                                        states: states, cities: cities});
+    });  
 }
 
 //Add new school

@@ -18,3 +18,9 @@
 .searchterm-bold {
   font-weight: 800;
 }/*# sourceMappingURL=schoolsearch.css.map */
+
+select {
+  margin-left: 10px;
+  margin-right: 10px;
+  display: inline-block;
+}
