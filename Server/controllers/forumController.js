@@ -1,15 +1,19 @@
 exports.tos = (req, res) => {
-    res.render('tos');
+    const user = req.session.user
+    res.render('tos', {showButtons: true, user: user});
 }
 
 exports.pp = (req, res) => {
-    res.render('pp');
+    const user = req.session.user
+    res.render('pp', {showButtons: true, user: user});
 }
 
 exports.about = (req, res) => {
-    res.render('about');
+    const user = req.session.user
+    res.render('about',{showButtons: true, user: user});
 }
 
 exports.faq = (req, res) => {
-    res.render('faq');
+    const user = req.session.user
+    res.render('faq', {showButtons: true, user: user});
 }
