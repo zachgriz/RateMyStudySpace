@@ -26,7 +26,7 @@ exports.roomform = (req, res) => {
     knex
         knex.raw("select * from school where sid = ?", req.params.sid)
         .then((results) => {
-            res.render('addroom', { results: results.rows, showButtons : true, user: user});
+            res.render('addroom', { results: results.rows, showButtons : true, user: user, sid: req.params.sid});
         });
 }
 
@@ -42,7 +42,7 @@ exports.roomcreate = (req, res) => {
             address: address,
             description: description, 
             sid: req.params.sid,
-            username: user.username})
+            userid: user.userid})
     .returning('rid')
     .then(
         function(rid) {
@@ -64,7 +64,7 @@ exports.roomcreate = (req, res) => {
         return knex.raw("select * from school where sid = ?", req.params.sid) })
     .then(function(results) {
         
-        res.render('addroom', {results: results.rows, alert : "Room added successfully. ", showButtons: true, user: user} );
+        res.render('addroom', {results: results.rows, alert : "Room added successfully. ", showButtons: true, user: user, sid: req.params.sid} );
     });
 
     

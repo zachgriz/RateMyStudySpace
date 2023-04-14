@@ -61,7 +61,12 @@ exports.loginUser = (req, res) => {
                 req.session.user = {
                     username: result.username,
                     email: result.email,
-                    userid: result.userid
+                    userid: result.userid,
+                }
+                if(result.pfp)
+                {                    
+                    var base64 = Buffer.from(result.pfp).toString('base64')
+                    req.session.user.pfp = base64
                 }
 
                 res.redirect('/')
@@ -84,7 +89,7 @@ exports.myprofile = (req, res) => {
             function (a, b) { return a.rating > b.rating ? a : b}
         )
 
-        knex.select('*').from('room').where({username:user.username}).then((rooms) => {
+        knex.select('*').from('room').where({userid:user.userid}).then((rooms) => {
             
             knex.select('*').from('room').where({rid:favereview.rid}).first().then( (fave) => {
                 
@@ -154,6 +159,7 @@ exports.editProfile = (req, res) => {
         }
         if(req.files)
         {
+            console.log('file added')
             knex('user')
             .where({userid:user.userid})
             .update(
@@ -161,6 +167,7 @@ exports.editProfile = (req, res) => {
                     pfp: req.files.pfp.data
                 }
             ).then(() => {
+                req.session.user.pfp = Buffer.from(req.files.pfp.data).toString('base64')
                 console.log('pfp updated')
             })
         }

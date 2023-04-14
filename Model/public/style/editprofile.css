@@ -46,15 +46,9 @@
   overflow: hidden;
   width: 100px;
   height: 100px;
-  background: url(../images/pencil_icon.png) no-repeat center center;
   background-size: 60%;
   cursor: pointer;
-  font-size: 0; /* hide the text */
   background-color: rgb(224, 224, 224);
-}
-
-#file-input::-webkit-file-upload-button {
-  visibility: hidden;
 }
 
 #file-input:hover {
