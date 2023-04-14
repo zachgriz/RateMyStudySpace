@@ -106,3 +106,7 @@ exports.logout = (req, res) => {
         res.redirect('/')
     }
 }
+
+exports.editProfileForm = (req, res) => {
+    res.render('editprofile', {msg: req.msg})
+}

@@ -1,0 +1,16 @@
+<div class="row justify-content-center">
+    <div class="col align-self-center">
+        <form action="/user/editprofile" class="login-form" method="post">
+            <label for="email">New Email Address</label>
+            <input type="email" name="email" id="email">
+            <label for="password1">New Password</label>
+            <input type="password" name="password1" id="password1">
+            <label for="password2">Confirm New Password</label>
+            <input type="password" name="password2" id="password2">
+            {{#if msg}}
+                <div class="alert alert-danger" role="alert">{{msg}}</div>
+            {{/if}}
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+    </div>
+</div>

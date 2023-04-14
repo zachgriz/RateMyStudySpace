@@ -27,6 +27,9 @@ router.post('/addschool', schoolController.schoolcreate);
 router.get('/myprofile', accountController.myprofile)
 router.get('/logout', accountController.logout)
 
+router.get('/editprofile', accountController.editProfileForm)
+//router.post('/editprofile', accountController.editProfile)
+
 router.get('/:sid/addroom', roomController.roomform);
 router.post('/:sid/addroom', roomController.roomcreate);
 router.post('/:sid/:rid/rate', roomController.rate);
