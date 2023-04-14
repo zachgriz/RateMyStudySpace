@@ -18,7 +18,7 @@
     </div>
     {{/if}}
     
-    <form method="POST" action="/user/{{sid}}/{{rid}}/rate">
+    <form method="POST" action="/user/rate/{{sid}}/{{rid}}">
         <input class="rating" max="5" oninput="this.style.setProperty('--value', `${this.valueAsNumber}`)" step="1"
             style="--value:0" type="range" value="0" name = "rating">
 
