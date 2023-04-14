@@ -85,7 +85,8 @@ exports.roomview = (req, res) => {
                     var base64 = Buffer.from(pic.data).toString('base64')
                     pic.data = base64
                 }
-
+                
+                //get the username and append it as an attribute to the results with innerJoin
                 knex.select('review.*', 'user.username')
                 .from('review')
                 .where({rid: req.params.rid})
