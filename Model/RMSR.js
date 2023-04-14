@@ -12,14 +12,14 @@ let port = process.env.PORT || 3000;
 
 // Middleware
 
+// Handle file uploads
+app.use(fileUpload());
+
 // Parse form-encoded
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // Parse json
 app.use(bodyParser.json());
-
-// Handle file uploads
-// app.use(fileUpload());
 
 // Parse static files 
 app.use(express.static(path.join(__dirname, 'public')));

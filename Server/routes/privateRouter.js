@@ -19,7 +19,7 @@ const sessionChecker = (req, res, next) => {
   
 
 router.use(sessionChecker)
-router.use(fileUpload())
+//router.use(fileUpload())
 
 router.get('/addschool', schoolController.schoolform);
 router.post('/addschool', schoolController.schoolcreate);

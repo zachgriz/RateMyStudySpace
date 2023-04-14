@@ -50,6 +50,9 @@
             {{/unless}}
             {{#if user}}
             <div class="col-3">
+                {{#if pfp}}
+                    <img src="data:image/png;base64,{{pfp}}" alt="pfp" class="pfp_img">
+                {{/if}}
                     <div class="dropdown text-center">
                         <button
                         class="btn btn-body-bg dropdown-toggle"

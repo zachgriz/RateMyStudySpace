@@ -10889,4 +10889,10 @@ textarea.form-control-lg {
 
 .footer-logo {
   width: 5em;
+}
+
+.pfp_img {
+  display: block;
+  height: 100px;
+  border-radius: 50%;
 }/*# sourceMappingURL=main.css.map */
