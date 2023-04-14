@@ -10839,8 +10839,8 @@ textarea.form-control-lg {
 }
 
 .nav {
-  height: 50px;
-  position: relative;
+  height: 70px;
+  border-bottom: #9D4CBA solid 5px;
 }
 
 .masthead {
@@ -10892,7 +10892,11 @@ textarea.form-control-lg {
 }
 
 .pfp_img {
-  display: block;
-  height: 100px;
+  display: inline-block;
+  -o-object-fit: cover;
+     object-fit: cover;
+  height: 50px;
+  width: 50px;
   border-radius: 50%;
+  border: #9D4CBA solid 2px;
 }/*# sourceMappingURL=main.css.map */

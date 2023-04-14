@@ -21,8 +21,9 @@ $primary: #9D4CBA;
     align-items: center;
 }
 .nav{
-    height: 50px;
-    position: relative;
+    height: 70px;
+    //position: relative;
+    border-bottom: #9D4CBA solid 5px;
 }
 .masthead{
     display: flex;
@@ -68,7 +69,10 @@ $primary: #9D4CBA;
    width: 5em;
 }
 .pfp_img{
-    display: block;
-    height: 100px;
+    display: inline-block;
+    object-fit: cover;
+    height: 50px;
+    width: 50px;
     border-radius: 50%;
+    border: #9D4CBA solid 2px;
 }

@@ -49,23 +49,24 @@
                 {{/if}}
             {{/unless}}
             {{#if user}}
-            <div class="col-3">
-                {{#if pfp}}
-                    <img src="data:image/png;base64,{{pfp}}" alt="pfp" class="pfp_img">
-                {{/if}}
-                    <div class="dropdown text-center">
-                        <button
-                        class="btn btn-body-bg dropdown-toggle"
-                        type="button"
-                        data-toggle="dropdown"
-                        aria-expanded="false">
-                        {{user.username}}
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/user/myprofile">View Profile</a></li>
-                            <li><a class="dropdown-item" href="/user/logout">Logout</a></li>
-                        </ul>
-                    </div>
+            <div class="col-3" >
+                
+                <div class="dropdown text-center" style="margin-top:10px;">
+                    {{#if user.pfp}}
+                    <img src="data:image/png;base64,{{user.pfp}}" alt="pfp" class="pfp_img">
+                    {{/if}}
+                    <button
+                    class="btn btn-body-bg dropdown-toggle"
+                    type="button"
+                    data-toggle="dropdown"
+                    aria-expanded="false">
+                    {{user.username}}
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/user/myprofile">View Profile</a></li>
+                        <li><a class="dropdown-item" href="/user/logout">Logout</a></li>
+                    </ul>
+                </div>
             </div>
             {{/if}}
         </div>

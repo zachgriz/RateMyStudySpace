@@ -65,7 +65,7 @@ exports.loginUser = (req, res) => {
                 }
                 if(result.pfp)
                 {                    
-                    var base64 = Buffer.from(result.pfp.data).toString('base64')
+                    var base64 = Buffer.from(result.pfp).toString('base64')
                     req.session.user.pfp = base64
                 }
 
@@ -167,6 +167,7 @@ exports.editProfile = (req, res) => {
                     pfp: req.files.pfp.data
                 }
             ).then(() => {
+                req.session.user.pfp = Buffer.from(req.files.pfp.data).toString('base64')
                 console.log('pfp updated')
             })
         }

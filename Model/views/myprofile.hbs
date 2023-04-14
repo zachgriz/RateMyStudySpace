@@ -16,7 +16,14 @@
         </div>
     </div>
     <div class="row profile-info">
-        <div class="profile-pic"></div>
+        <div class="col-2">
+            {{#if user.pfp}}
+                <img src="data:image/png;base64,{{user.pfp}}" alt="pfp" class="profile-pic" style="padding: none;">
+            {{/if}}
+            {{#unless user.pfp}}
+                <img src="images/logo_purple.png" alt="pfp" class="profile-pic">
+            {{/unless}}
+        </div>
         <div class="col profile-col-1">
             <p class="username">{{user.username}}</p>
             <a type="button" class="btn btn-primary" style="width:150px" href="/user/editprofile">Edit Profile</a>
@@ -36,7 +43,7 @@
                 <ul style="list-style-type: none;">
                     {{#each rooms}}
                     <li style="border-bottom: 1px solid gray; margin:5px;">
-                        <div><h4><a style="color: #212529;" href="/{{sid}}/{{rid}}">{{bname}} {{rno}}</a></h4></div>
+                        <div><h4><a style="color: #212529;" href="/viewroom/{{sid}}/{{rid}}">{{bname}} {{rno}}</a></h4></div>
                     </li>
                     {{/each}}
                 </ul>

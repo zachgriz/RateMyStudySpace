@@ -11,11 +11,11 @@ h1{
 }
 
 .profile-pic{
-    align-self: flex-start;
-    background-color: #D9D9D9;
-    border-radius: 68.5px;
-    height: 137px;
-    width: 137px;
+    object-fit: cover;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    border: #9D4CBA solid 4px;
 }
 
 .profile-info{
