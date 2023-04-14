@@ -66,5 +66,13 @@ const privateRouter = require('../Server/routes/privateRouter');
 
 app.use('/user', privateRouter)
 app.use('/', publicRouter)
+app.use(function(req, res, next) {
+  if(req.accepts('html')) {
+    res.status(404);
+    res.send("oops, page not found!");
+    return;
+  }
+});
+
 
 app.listen(port, () => console.log('listening on port ' + port));

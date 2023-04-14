@@ -73,11 +73,13 @@ exports.view = (req, res) => {
 //Search for specific school. Return a list of schools matching the query string in some way. 
 // Both schools and query are set to lowercase to avoid case matching.
 exports.find = (req, res) => {
-    const searchterm = req.body.search
+    var searchterm = req.body.search
     const user = req.session.user
+    console.log(typeof searchterm)
 
     let sortby = req.body.sortby
     if (sortby === '') { sortby = 'numrooms DESC'}
+    if (sortby === undefined) { sortby = 'numrooms DESC'}
     if (sortby === 'school_avg_rating') { sortby = 'school_avg_rating DESC NULLS LAST'}
 
     knex.raw("SELECT * FROM school WHERE lower(sname) LIKE lower('%" + searchterm + "%') ORDER BY " + sortby)
