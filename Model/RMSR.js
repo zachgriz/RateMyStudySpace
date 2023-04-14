@@ -12,14 +12,14 @@ let port = process.env.PORT || 3000;
 
 // Middleware
 
+// Handle file uploads
+app.use(fileUpload());
+
 // Parse form-encoded
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // Parse json
 app.use(bodyParser.json());
-
-// Handle file uploads
-// app.use(fileUpload());
 
 // Parse static files 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -64,8 +64,8 @@ const privateRouter = require('../Server/routes/privateRouter');
 // not sure if this is correct but its the only way i was able to get the file uploader to work
 //routes.use(fileUpload())
 
-app.use('/user', privateRouter)
 app.use('/', publicRouter)
+app.use('/user', privateRouter)
 app.use(function(req, res, next) {
   if(req.accepts('html')) {
     res.status(404);

@@ -61,7 +61,12 @@ exports.loginUser = (req, res) => {
                 req.session.user = {
                     username: result.username,
                     email: result.email,
-                    userid: result.userid
+                    userid: result.userid,
+                }
+                if(result.pfp)
+                {                    
+                    var base64 = Buffer.from(result.pfp).toString('base64')
+                    req.session.user.pfp = base64
                 }
 
                 res.redirect('/')
@@ -76,24 +81,20 @@ exports.loginUser = (req, res) => {
 }
 
 exports.myprofile = (req, res) => {
-
     const user = req.session.user
-    knex.select('*').from('review').where({username:user.username}).then((reviews) => {
-        console.log(reviews)
+    knex.select('*').from('review').where({userid:user.userid}).then((reviews) => {
 
         // get favorite room (highest rated)
         const favereview = reviews.reduce(
             function (a, b) { return a.rating > b.rating ? a : b}
         )
 
-        knex.select('*').from('room').where({username:user.username}).then((rooms) => {
+        knex.select('*').from('room').where({userid:user.userid}).then((rooms) => {
             
             knex.select('*').from('room').where({rid:favereview.rid}).first().then( (fave) => {
                 
                 res.render('myprofile', {user: user, reviews: reviews, rooms: rooms, fave: fave})
-            })
-
-            
+            })            
         })
     })
     
@@ -104,5 +105,72 @@ exports.logout = (req, res) => {
     {
         req.session.user = null
         res.redirect('/')
+    }
+}
+
+exports.editProfileForm = (req, res) => {
+    res.render('editprofile', {msg: req.msg})
+}
+
+exports.editProfile = (req, res) => {
+    const user = req.session.user
+    const {username, email, password1, password2} = req.body
+    if(password1 != password2)
+    {
+        res.render('editprofile', {msg: 'Passwords must match'})
+    } else {
+        if(username !== "")
+        {
+            knex('user')
+            .where({userid:user.userid})
+            .update(
+                {
+                    username: username
+                }
+            ).then(() => {
+                req.session.user.username = username
+                console.log('username updated')
+            })
+        }
+        if(email !== "")
+        {
+            knex('user')
+            .where({userid:user.userid})
+            .update(
+                {
+                    email: email
+                }
+            ).then(() => {
+                req.session.user.email = email
+                console.log('email updated')
+            })
+        }
+        if(password1 !== "")
+        {
+            knex('user')
+            .where({userid:user.userid})
+            .update(
+                {
+                    passwordHash: bcrypt.hashSync(password1)
+                }
+            ).then(() => {
+                console.log('password updated')
+            })
+        }
+        if(req.files)
+        {
+            console.log('file added')
+            knex('user')
+            .where({userid:user.userid})
+            .update(
+                {
+                    pfp: req.files.pfp.data
+                }
+            ).then(() => {
+                req.session.user.pfp = Buffer.from(req.files.pfp.data).toString('base64')
+                console.log('pfp updated')
+            })
+        }
+        res.render('myprofile')
     }
 }

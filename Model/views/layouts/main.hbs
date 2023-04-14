@@ -13,7 +13,11 @@
     <link rel="stylesheet" href="/style/schoolsearch.css">
     <link rel="stylesheet" href="/style/addroom.css">
     <link rel="stylesheet" href="/style/addschool.css">
-
+    <link rel="stylesheet" href="/style/myprofile.css">
+    <link rel="stylesheet" href="/style/login.css">
+    <link rel="stylesheet" href="/style/register.css">
+    <link rel="stylesheet" href="/style/editprofile.css">
+   
 
     <link href="/dist/css/bootstrap.css" rel="stylesheet">
     <script type="text/javascript" src="/dist/js/jquery-1.10.2.js"></script>
@@ -40,33 +44,28 @@
                         </a>
 
                     </div>
-                    {{#unless user}}
-                    {{#if showButtons}}
-                    <div class="col-3 buttons">
-                        <div class="vertical-center">
-                            <a href="/login" type="button" class="btn btn-primary" style="width:150px">Login</a>
-                            <a href="/register" class="btn btn-outline-primary" style="width:150px">Register</a>
-                        </div>
-                    </div>
-                    {{/if}}
-                    {{/unless}}
-                    {{#if user}}
-                    <div class="col-3">
-                        <div class="dropdown text-center">
-                            <button class="btn btn-body-bg dropdown-toggle" type="button" data-toggle="dropdown"
-                                aria-expanded="false">
-                                {{user.username}}
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/user/myprofile">View Profile</a></li>
-                                <li><a class="dropdown-item" href="/user/logout">Logout</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    {{/if}}
                 </div>
-
-                {{{body}}}
+                {{/if}}
+            {{/unless}}
+            {{#if user}}
+            <div class="col-3" >
+                
+                <div class="dropdown text-center" style="margin-top:10px;">
+                    {{#if user.pfp}}
+                    <img src="data:image/png;base64,{{user.pfp}}" alt="pfp" class="pfp_img">
+                    {{/if}}
+                    <button
+                    class="btn btn-body-bg dropdown-toggle"
+                    type="button"
+                    data-toggle="dropdown"
+                    aria-expanded="false">
+                    {{user.username}}
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/user/myprofile">View Profile</a></li>
+                        <li><a class="dropdown-item" href="/user/logout">Logout</a></li>
+                    </ul>
+                </div>
             </div>
 
             <br /><br />

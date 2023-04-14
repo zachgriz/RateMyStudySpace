@@ -55,7 +55,7 @@
             <h5>Description:</h5>
             <p>{{this.description}}</p>
 
-            <a href="/user/{{this.sid}}/{{this.rid}}/rate" type="button" class="btn btn-primary">Rate This Room</a>
+            <a href="/user/rate/{{this.sid}}/{{this.rid}}" type="button" class="btn btn-primary">Rate This Room</a>
         </div>
         
         {{/results}}
@@ -85,7 +85,7 @@
     <ul style="list-style-type: none;">
         {{#each reviews}}
             <li style="border-bottom: 1px solid gray; margin:5px;">
-                <div><h4 style="color: #9D4CBA;">{{rating}}<i class="fa-sharp fa-solid fa-star"></i> - {{username}}</h4><p>{{content}}</p></div>
+                <div><h4 style="color: #9D4CBA;">{{rating}}<i class="fa-sharp fa-solid fa-star"></i> - {{this.username}}</h4><p>{{content}}</p></div>
             </li>
         {{/each}}
     </ul>

@@ -1,0 +1,56 @@
+.edit-box {
+  height: 350px;
+  width: 450px;
+  border-radius: 25px;
+  margin-top: 200px;
+}
+
+.edit-form {
+  position: relative;
+  width: 65%;
+  height: -moz-fit-content;
+  height: fit-content;
+  justify-content: center;
+  align-items: center;
+}
+
+.edit-form label {
+  color: black;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  margin-top: 20px;
+}
+
+.edit-form input {
+  text-indent: 15px;
+  margin-top: 0px;
+  border: none;
+  height: 36px;
+  border-radius: 15px;
+  width: 100%;
+  background-color: rgb(224, 224, 224);
+}
+
+.edit-form button {
+  margin-top: 25px;
+  width: 50%;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#file-input {
+  display: block;
+  border-radius: 50%;
+  overflow: hidden;
+  width: 100px;
+  height: 100px;
+  background-size: 60%;
+  cursor: pointer;
+  background-color: rgb(224, 224, 224);
+}
+
+#file-input:hover {
+  background-color: #ccc;
+}/*# sourceMappingURL=editprofile.css.map */

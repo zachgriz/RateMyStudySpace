@@ -26,7 +26,7 @@ exports.roomform = (req, res) => {
     knex
         knex.raw("select * from school where sid = ?", req.params.sid)
         .then((results) => {
-            res.render('addroom', { results: results.rows, showButtons : true, user: user});
+            res.render('addroom', { results: results.rows, showButtons : true, user: user, sid: req.params.sid});
         });
 }
 
@@ -42,7 +42,7 @@ exports.roomcreate = (req, res) => {
             address: address,
             description: description, 
             sid: req.params.sid,
-            username: user.username})
+            userid: user.userid})
     .returning('rid')
     .then(
         function(rid) {
@@ -64,7 +64,7 @@ exports.roomcreate = (req, res) => {
         return knex.raw("select * from school where sid = ?", req.params.sid) })
     .then(function(results) {
         
-        res.render('addroom', {results: results.rows, alert : "Room added successfully. ", showButtons: true, user: user} );
+        res.render('addroom', {results: results.rows, alert : "Room added successfully. ", showButtons: true, user: user, sid: req.params.sid} );
     });
 
     
@@ -73,6 +73,7 @@ exports.roomcreate = (req, res) => {
 //View rate/room
 exports.roomview = (req, res) => {
     const user = req.session.user
+    console.log('in roomview controller')
     knex.raw("select * from school, room where school.sid = room.sid and room.sid = ? and room.rid = ?", [req.params.sid, req.params.rid]).then(function(results){
     // knex.raw("SELECT ROUND(avg(rating), 1) FROM(SELECT * FROM review, room WHERE room.rid = review.rid and room.sid = review.sid and room.rid = ? and rating IS NOT NULL) as ratings", req.params.rid).then(function(rating){
         //  console.log("rating: ", rating.rows[0].round)
@@ -84,10 +85,15 @@ exports.roomview = (req, res) => {
                     var base64 = Buffer.from(pic.data).toString('base64')
                     pic.data = base64
                 }
-
-                knex.raw("select * from review where rid = ?", req.params.rid)
+                
+                //get the username and append it as an attribute to the results with innerJoin
+                knex.select('review.*', 'user.username')
+                .from('review')
+                .where({rid: req.params.rid})
+                .innerJoin('user', 'review.userid', 'user.userid')
                 .then(function(reviews) {
-                    res.render('viewroom', {results: results.rows, school: school.rows, pics: pics.rows, reviews:reviews.rows, showButtons: true, user: user});
+                    console.log(reviews)
+                    res.render('viewroom', {results: results.rows, school: school.rows, pics: pics.rows, reviews:reviews, showButtons: true, user: user});
                 })
             })
             
@@ -112,7 +118,7 @@ exports.rate = (req,res) => {
         content: content,
         rid: req.params.rid,
         sid: req.params.sid,
-        username: req.session.user.username})
+        userid: req.session.user.userid})
     .then(function() { 
         knex.raw("SELECT ROUND(avg(rating), 1) FROM(SELECT * FROM review, room WHERE room.rid = review.rid and room.sid = review.sid and room.rid = ? and rating IS NOT NULL) as ratings", req.params.rid).then(function(rating){
         knex.raw("UPDATE room SET room_avg_rating = ? WHERE room.rid = ? and room.sid = ?", [rating.rows[0].round, req.params.rid, req.params.sid]).then(function(update){
@@ -121,7 +127,7 @@ exports.rate = (req,res) => {
         knex.raw("SELECT count(*) FROM review where rid = ? and sid = ?", [req.params.rid, req.params.sid]).then(function (num_reviews){
             console.log("nr: ", num_reviews.rows[0].count);
         knex.raw("UPDATE room SET num_reviews = ? WHERE sid = ? and rid = ?", [num_reviews.rows[0].count, req.params.sid, req.params.rid]).then(function (update_reviews){
-            res.redirect('/'+req.params.sid+'/'+req.params.rid);
+            res.redirect('/viewroom/'+req.params.sid+'/'+req.params.rid);
     }); }); });
     }); }); }); });
 
