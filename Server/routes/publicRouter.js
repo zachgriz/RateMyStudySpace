@@ -35,7 +35,7 @@ router.post('/registeruser', accountController.registerUser)
 //router.get('/getimage/:id', roomController.getImage);
 
 
-router.get('/:sid/:rid', roomController.roomview);
+router.get('/viewroom/:sid/:rid', roomController.roomview);
 
 router.get('/termsofservice', forumController.tos);
 router.get('/privacypolicy', forumController.pp);

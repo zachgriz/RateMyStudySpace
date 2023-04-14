@@ -64,7 +64,7 @@ const privateRouter = require('../Server/routes/privateRouter');
 // not sure if this is correct but its the only way i was able to get the file uploader to work
 //routes.use(fileUpload())
 
-app.use('/user', privateRouter)
 app.use('/', publicRouter)
+app.use('/user', privateRouter)
 
 app.listen(port, () => console.log('listening on port ' + port));

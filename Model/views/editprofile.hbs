@@ -1,6 +1,9 @@
 <div class="row justify-content-center">
-    <div class="col align-self-center">
-        <form action="/user/editprofile" class="login-form" method="post">
+    <div class="edit-box">
+        <form action="/user/editprofile" class="edit-form center" method="post">
+            <input type="file" name="pfp" id="file-input">
+            <label for="username">New Username</label>
+            <input type="text" name="username" id="username">
             <label for="email">New Email Address</label>
             <input type="email" name="email" id="email">
             <label for="password1">New Password</label>
@@ -10,7 +13,7 @@
             {{#if msg}}
                 <div class="alert alert-danger" role="alert">{{msg}}</div>
             {{/if}}
-            <button type="submit" class="btn btn-primary">Login</button>
+            <button type="submit" class="btn btn-primary">Save Changes</button>
         </form>
     </div>
 </div>

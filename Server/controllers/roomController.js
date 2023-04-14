@@ -73,6 +73,7 @@ exports.roomcreate = (req, res) => {
 //View rate/room
 exports.roomview = (req, res) => {
     const user = req.session.user
+    console.log('in roomview controller')
     knex.raw("select * from school, room where school.sid = room.sid and room.sid = ? and room.rid = ?", [req.params.sid, req.params.rid]).then(function(results){
     // knex.raw("SELECT ROUND(avg(rating), 1) FROM(SELECT * FROM review, room WHERE room.rid = review.rid and room.sid = review.sid and room.rid = ? and rating IS NOT NULL) as ratings", req.params.rid).then(function(rating){
         //  console.log("rating: ", rating.rows[0].round)

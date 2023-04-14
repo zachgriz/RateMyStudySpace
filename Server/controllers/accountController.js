@@ -76,7 +76,6 @@ exports.loginUser = (req, res) => {
 }
 
 exports.myprofile = (req, res) => {
-
     const user = req.session.user
     knex.select('*').from('review').where({username:user.username}).then((reviews) => {
         console.log(reviews)
