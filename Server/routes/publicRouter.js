@@ -43,4 +43,5 @@ router.get('/privacypolicy', forumController.pp);
 router.get('/about', forumController.about);
 router.get('/faq', forumController.faq);
 
+
 module.exports = router;
