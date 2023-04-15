@@ -48,7 +48,10 @@
                 <ul style="list-style-type: none;">
                     {{#each rooms}}
                     <li style="border-bottom: 1px solid gray; margin:5px;">
-                        <div><h4><a style="color: #212529;" href="/viewroom/{{sid}}/{{rid}}">{{bname}} {{rno}}</a></h4></div>
+                        <div class="row justify-content-between">
+                            <div class="col"><h4><a style="color: #212529;" href="/viewroom/{{sid}}/{{rid}}">{{bname}} {{rno}}</a></h4></div>
+                            <div class="col-2"><h5><a href="/editroom">Edit</a></h5></div>
+                        </div>
                     </li>
                     {{/each}}
                 </ul>
