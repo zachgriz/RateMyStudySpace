@@ -82,19 +82,26 @@ exports.loginUser = (req, res) => {
 
 exports.myprofile = (req, res) => {
     const user = req.session.user
+    let favereview = null
     knex.select('*').from('review').where({userid:user.userid}).then((reviews) => {
 
         // get favorite room (highest rated)
-        const favereview = reviews.reduce(
+        if (reviews.length > 0) {
+        favereview = reviews.reduce(
             function (a, b) { return a.rating > b.rating ? a : b}
-        )
+        )}
 
         knex.select('*').from('room').where({userid:user.userid}).then((rooms) => {
             
-            knex.select('*').from('room').where({rid:favereview.rid}).first().then( (fave) => {
-                
-                res.render('myprofile', {user: user, reviews: reviews, rooms: rooms, fave: fave})
-            })            
+            if (favereview !== null) {
+                knex.select('*').from('room').where({rid:favereview.rid}).first().then( (fave) => {
+                    
+                    res.render('myprofile', {user: user, reviews: reviews, rooms: rooms, fave: fave})
+                })   
+            } else {
+                    
+                res.render('myprofile', {user: user, reviews: reviews, rooms: rooms})
+            }       
         })
     })
     

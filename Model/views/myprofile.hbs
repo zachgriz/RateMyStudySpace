@@ -33,7 +33,11 @@
             <div>
                 <span class="spaces-rated-num">{{reviews.length}}</span><span class="spaces-span" style="margin-left: 20px;">spaces rated</span>
             </div>
+            {{#if fave}}
             <span class="spaces-span">Favorite Space: </span><span class="spaces-span">{{fave.bname}} {{fave.rno}}</span>
+            {{else}}
+            <span class="spaces-span">Favorite Space: </span><span class="spaces-span">N/A</span>
+            {{/if}}
         </div>
     </div>
     <div class="row spaces">
