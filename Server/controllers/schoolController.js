@@ -21,7 +21,7 @@ function getFilterList(array, uniqProperties) {
 }
 
 function filterByAttribute(array, filterConstraint, attribute) {
-    if (filterConstraint !== '') {
+    if (filterConstraint !== '' && filterConstraint !== undefined) {
         return array.filter(
             (value) => value[attribute] === filterConstraint
         )
@@ -31,7 +31,7 @@ function filterByAttribute(array, filterConstraint, attribute) {
 }
 
 function filterByRating(array, filterConstraint, attribute) {
-    if (filterConstraint !== '') {
+    if (filterConstraint !== '' && filterConstraint !== undefined) {
         return array.filter(
             (value) => value[attribute] >= filterConstraint
         )
@@ -41,7 +41,7 @@ function filterByRating(array, filterConstraint, attribute) {
 }
 
 function filterByFits(array, filterConstraint) {
-    if (filterConstraint !== '') {
+    if (filterConstraint !== '' && filterConstraint !== undefined) {
         return array.filter(
             function (value) {
                 if (filterConstraint === '0') {return value.fits < 5}
@@ -75,7 +75,6 @@ exports.view = (req, res) => {
 exports.find = (req, res) => {
     var searchterm = req.body.search
     const user = req.session.user
-    console.log(typeof searchterm)
 
     let sortby = req.body.sortby
     if (sortby === '') { sortby = 'numrooms DESC'}
