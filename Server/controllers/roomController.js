@@ -30,6 +30,12 @@ exports.roomform = (req, res) => {
         });
 }
 
+function isIterable(input) {  
+    if (input === null || input === undefined) {
+      return false
+    }
+}
+
 //Add new room
 exports.roomcreate = (req, res) => {
     const user = req.session.user
@@ -47,15 +53,27 @@ exports.roomcreate = (req, res) => {
     .then(
         function(rid) {
             if (req.files) {
-                for (file of req.files.addimage) {
+                if (isIterable(req.files.addimage)) {
+                    for (file of req.files.addimage) {
+                        console.log(file.name);
+                        knex('image').insert ({
+                            roomid: rid[0].rid,
+                            imagename: file.name,
+                            data: file.data
+                        }).then(() => {
+                            console.log('Image added')
+                        })
+                    }
+                } else {
+                    file = req.files.addimage
                     console.log(file.name);
-                    knex('image').insert ({
-                        roomid: rid[0].rid,
-                        imagename: file.name,
-                        data: file.data
-                    }).then(() => {
-                        console.log('Image added')
-                    })
+                        knex('image').insert ({
+                            roomid: rid[0].rid,
+                            imagename: file.name,
+                            data: file.data
+                        }).then(() => {
+                            console.log('Image added')
+                        })
                 }
             }
         }
@@ -169,16 +187,27 @@ exports.editRoom = (req, res) => {
     .then(
         function(rid) {
             if (req.files) {
-                console.log(req.files.addimage)
-                for (file of req.files.addimage) {
+                if (isIterable(req.files.addimage)) {
+                    for (file of req.files.addimage) {
+                        console.log(file.name);
+                        knex('image').insert ({
+                            roomid: rid[0].rid,
+                            imagename: file.name,
+                            data: file.data
+                        }).then(() => {
+                            console.log('Image added')
+                        })
+                    }
+                } else {
+                    file = req.files.addimage
                     console.log(file.name);
-                    knex('image').insert ({
-                        roomid: rid[0].rid,
-                        imagename: file.name,
-                        data: file.data
-                    }).then(() => {
-                        console.log('Image added')
-                    })
+                        knex('image').insert ({
+                            roomid: rid[0].rid,
+                            imagename: file.name,
+                            data: file.data
+                        }).then(() => {
+                            console.log('Image added')
+                        })
                 }
             }
         }
