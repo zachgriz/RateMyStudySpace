@@ -35,5 +35,8 @@ router.post('/:sid/addroom', roomController.roomcreate);
 router.post('/rate/:sid/:rid', roomController.rate);
 router.get('/rate/:sid/:rid', roomController.roomrate);
 
+router.get('/editroom/:sid/:rid', roomController.editRoomForm);
+router.post('/editroom/:sid/:rid', roomController.editRoom);
+
 
 module.exports = router;

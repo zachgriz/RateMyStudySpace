@@ -1,0 +1,88 @@
+<div class="container-search">
+
+{{#each results}}
+
+     <div class="row addroom-title-row">
+                <div class="vertical-center-left addroom-title">
+                    <h1>Edit Room</h1>
+                </div>
+            </div>
+
+            <div class="row school-title-row">
+                <div class="vertical-center-left school-title">
+                    <!-- JS {{school}} -->
+                    <h2>{{this.sname}}</h2>
+                </div>
+            </div>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item"><a href="/viewschool/{{this.sid}}">{{this.sname}}</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Edit Room</li>
+  </ol>
+</nav>
+{{/each}}
+    {{#if alert}}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{alert}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close" id ="close-alert">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {{/if}}
+
+    <br /><br />
+
+    {{#each room}}
+    <form class="row needs-validation" method="POST" action="/user/editroom/{{sid}}/{{rid}}" enctype="multipart/form-data">
+
+       <div class="row">
+        <div class="col">
+            <div class="d-grid gap-2 col-8">
+                <label for="name-form">
+                    <h4>Name of Building</h4>
+                </label>
+                <input class="form-control" id="name-form" type="text" name="buildingname" value="{{this.bname}}" required></input>
+                <br />
+                <label for="roomno-form">
+                    <h4>Room Number</h4>
+                </label>
+                <input class="form-control" id="roomno-form" type="text" name="roomno" value="{{this.rno}}" required></input>
+                <br />
+                <label for="location-form">
+                    <h4>Address</h4>
+                </label>
+                <input class="form-control" id="location-form" type="text" name="address" value="{{this.address}}" required></input>
+                <br />
+                <label for="size-form">
+                    <h4>Fits</h4>
+                </label>
+                <input class="form-control" id="size-form" type="number" name="fits" value="{{this.fits}}" required></input>
+            </div>
+        </div>
+
+        <div class="col">
+            <label for="description-form">
+                <h4>Edit Description</h4>
+            </label>
+            <textarea class="form-control" id="description-form" rows="5" name="description">{{this.description}}</textarea>
+
+            <br /><br />
+            <label for="addimage"><h4>Add Images</h4></label><br>
+            <input type="file" name="addimage" id="addimage" accept="image/png, image/jpeg, image/jpg" multiple>
+            <br /><br /><br /><br /><br /><br /><br />
+
+            <div class="d-grid gap-2 col-3">
+                <input type="submit" class="btn btn-primary" value="Edit Room"></input>
+            </div>
+
+        </div>
+    </div>
+    </form>
+
+    {{/each}}
+
+    <br /><br /><br /><br />
+
+</div>

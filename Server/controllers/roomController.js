@@ -134,3 +134,65 @@ exports.rate = (req,res) => {
    
 }
 
+exports.editRoomForm = (req, res) => {
+    const user = req.session.user
+    console.log('in edit room controller')
+
+    knex
+        knex.raw("select * from school where sid = ?", req.params.sid)
+        .then((results) => {
+
+            knex.raw("select * from room where rid = ?", req.params.rid)
+            .then ((room) => {
+
+                console.log(room.rows)
+                
+                res.render('editroom', { results: results.rows, room: room.rows, showButtons : true, user: user, sid: req.params.sid});
+            })
+            
+        });
+
+}
+
+exports.editRoom = (req, res) => {
+    const user = req.session.user
+    const {buildingname, roomno, address, fits, description} = req.body;
+
+    knex('room').where({rid:req.params.rid})
+    .update ({bname: buildingname,
+            rno: roomno,
+            fits: fits,
+            address: address,
+            description: description, 
+            sid: req.params.sid})
+    .returning('rid')
+    .then(
+        function(rid) {
+            if (req.files) {
+                console.log(req.files.addimage)
+                for (file of req.files.addimage) {
+                    console.log(file.name);
+                    knex('image').insert ({
+                        roomid: rid[0].rid,
+                        imagename: file.name,
+                        data: file.data
+                    }).then(() => {
+                        console.log('Image added')
+                    })
+                }
+            }
+        }
+    )
+    .then(function() {
+        return knex.raw("select * from school where sid = ?", req.params.sid) })
+    .then(function(results) {
+
+        knex.raw("select * from room where rid = ?", req.params.rid)
+            .then ((room) => {
+
+                console.log(room.rows)
+                
+                res.render('editroom', { results: results.rows, room: room.rows, alert : "Room edited successfully. ", showButtons : true, user: user, sid: req.params.sid});
+            })
+    });
+}

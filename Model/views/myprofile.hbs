@@ -16,7 +16,8 @@
         </div>
     </div>
     <div class="row profile-info">
-        <div class="col-2">
+        <div class="col-1"></div>
+        <div class="col-1">
             {{#if user.pfp}}
                 <img src="data:image/png;base64,{{user.pfp}}" alt="pfp" class="profile-pic" style="padding: none;">
             {{/if}}
@@ -28,7 +29,7 @@
             <p class="username">{{user.username}}</p>
             <a type="button" class="btn btn-primary" style="width:150px" href="/user/editprofile">Edit Profile</a>
         </div>
-        <div class="col-3"></div>
+        <div class="col-2"></div>
         <div class="col profile-col-2">
             <div>
                 <span class="spaces-rated-num">{{reviews.length}}</span><span class="spaces-span" style="margin-left: 20px;">spaces rated</span>
@@ -40,22 +41,26 @@
             {{/if}}
         </div>
     </div>
-    <div class="row spaces">
-        <div class="col-6">
+    <div class="row spaces justify-content-center">
+        <div class="col-5">
             <div class="my-spaces">
-                <h2>My Spaces</h2>
+                <h2 class="text-center">My Spaces</h2>
                 <ul style="list-style-type: none;">
                     {{#each rooms}}
                     <li style="border-bottom: 1px solid gray; margin:5px;">
-                        <div><h4><a style="color: #212529;" href="/viewroom/{{sid}}/{{rid}}">{{bname}} {{rno}}</a></h4></div>
+                        <div class="row justify-content-between">
+                            <div class="col"><h4><a style="color: #212529;" href="/viewroom/{{sid}}/{{rid}}">{{bname}} {{rno}}</a></h4></div>
+                            <div class="col-2"><h5><a href="/user/editroom/{{sid}}/{{rid}}">Edit</a></h5></div>
+                        </div>
                     </li>
                     {{/each}}
                 </ul>
             </div>
         </div>
-        <div class="col-6">
+        <div class="col-1"></div>
+        <div class="col-5">
             <div class="rated-spaces">
-                <h2>Rated Spaces</h2>
+                <h2 class="text-center">Rated Spaces</h2>
                 <ul style="list-style-type: none;">
                     {{#each reviews}}
                         <li style="border-bottom: 1px solid gray; margin:5px;">
