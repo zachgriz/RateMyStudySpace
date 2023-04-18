@@ -137,6 +137,8 @@ exports.editProfile = (req, res) => {
             ).then(() => {
                 req.session.user.username = username
                 console.log('username updated')
+            }).then(() => {                
+                res.redirect('/user/myprofile')
             })
         }
         if(email !== "")
@@ -150,6 +152,8 @@ exports.editProfile = (req, res) => {
             ).then(() => {
                 req.session.user.email = email
                 console.log('email updated')
+            }).then(() => {                
+                res.redirect('/user/myprofile')
             })
         }
         if(password1 !== "")
@@ -162,6 +166,8 @@ exports.editProfile = (req, res) => {
                 }
             ).then(() => {
                 console.log('password updated')
+            }).then(() => {                
+                res.redirect('/user/myprofile')
             })
         }
         if(req.files)
@@ -174,10 +180,19 @@ exports.editProfile = (req, res) => {
                     pfp: req.files.pfp.data
                 }
             ).then(() => {
+                console.log(req.files.pfp.data)
                 req.session.user.pfp = Buffer.from(req.files.pfp.data).toString('base64')
+                console.log(req.session.user.pfp)
+
                 console.log('pfp updated')
+            }).then(() => {                
+                res.redirect('/user/myprofile')
             })
         }
-        res.render('myprofile')
+        // if entire form is empty just render profile page. this seemed like the best way to meet this requirement
+        if (!req.files && username === "" && email === "" && password1 === "" && password2 === "")
+        {
+            res.redirect('/user/myprofile')
+        }
     }
 }
