@@ -57,8 +57,8 @@ app.use(session({
   cookie: { secure: false }
 }))
 
-const publicRouter = require('../Server/routes/publicRouter');
-const privateRouter = require('../Server/routes/privateRouter');
+const publicRouter = require('./Server/routes/publicRouter');
+const privateRouter = require('./Server/routes/privateRouter');
 
 
 // not sure if this is correct but its the only way i was able to get the file uploader to work
