@@ -10,6 +10,10 @@ h1 {
   height: 78px;
 }
 
+.profile-info {
+  margin-bottom: 50px;
+}
+
 .profile-pic {
   -o-object-fit: cover;
      object-fit: cover;
@@ -43,5 +47,9 @@ h1 {
 .spaces h2 {
   font-size: 48px;
   color: #9D4CBA;
-  margin-top: 150px;
+  margin-top: 50px;
+}
+
+.my-spaces a {
+  text-decoration: none;
 }/*# sourceMappingURL=myprofile.css.map */

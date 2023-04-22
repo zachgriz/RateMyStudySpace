@@ -160,10 +160,8 @@ exports.editRoomForm = (req, res) => {
         knex.raw("select * from school where sid = ?", req.params.sid)
         .then((results) => {
 
-            knex.raw("select * from room where rid = ?", req.params.rid)
+            knex.raw("select * from room where rid = ? and sid = ?", [req.params.rid, req.params.sid])
             .then ((room) => {
-
-                console.log(room.rows)
                 
                 res.render('editroom', { results: results.rows, room: room.rows, showButtons : true, user: user, sid: req.params.sid});
             })
@@ -216,7 +214,7 @@ exports.editRoom = (req, res) => {
         return knex.raw("select * from school where sid = ?", req.params.sid) })
     .then(function(results) {
 
-        knex.raw("select * from room where rid = ?", req.params.rid)
+        knex.raw("select * from room where rid = ? and sid =?", [req.params.rid, req.params.sid])
             .then ((room) => {
 
                 console.log(room.rows)
@@ -224,4 +222,13 @@ exports.editRoom = (req, res) => {
                 res.render('editroom', { results: results.rows, room: room.rows, alert : "Room edited successfully. ", showButtons : true, user: user, sid: req.params.sid});
             })
     });
+}
+
+exports.deleteroom = (req, res) => {
+    console.log('in delete room controller')
+    knex('room').where({sid: req.params.sid, rid: req.params.rid}).del().returning('*')
+        .then( (deleted) => {
+            res.redirect('/user/myprofile/?msg=successdel&bname='+deleted[0].bname+'&rno='+deleted[0].rno)
+        })
+
 }

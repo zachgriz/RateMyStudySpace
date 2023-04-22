@@ -38,5 +38,7 @@ router.get('/rate/:sid/:rid', roomController.roomrate);
 router.get('/editroom/:sid/:rid', roomController.editRoomForm);
 router.post('/editroom/:sid/:rid', roomController.editRoom);
 
+router.get('/myprofile/delete/:sid/:rid', roomController.deleteroom);
+
 
 module.exports = router;

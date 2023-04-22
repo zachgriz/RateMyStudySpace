@@ -41,6 +41,12 @@
             {{/if}}
         </div>
     </div>
+    {{#if msg}}
+        <div class="alert alert-success alert-dismissible" role="alert">
+            <strong>{{bname}} {{rno}}</strong> deleted succesfully.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">&times;</button>
+        </div>
+    {{/if}}
     <div class="row spaces justify-content-center">
         <div class="col-5">
             <div class="my-spaces">
@@ -51,6 +57,7 @@
                         <div class="row justify-content-between">
                             <div class="col"><h4><a style="color: #212529;" href="/viewroom/{{sid}}/{{rid}}">{{bname}} {{rno}}</a></h4></div>
                             <div class="col-2"><h5><a href="/user/editroom/{{sid}}/{{rid}}">Edit</a></h5></div>
+                            <div class="col-2"><h5><a href="/user/myprofile/delete/{{sid}}/{{rid}}">Delete</a></h5></div>
                         </div>
                     </li>
                     {{/each}}
