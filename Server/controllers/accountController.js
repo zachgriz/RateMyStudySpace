@@ -83,6 +83,13 @@ exports.loginUser = (req, res) => {
 exports.myprofile = (req, res) => {
     const user = req.session.user
     let favereview = null
+
+    if (req.query.msg) {
+        res.locals.msg = req.query.msg
+        res.locals.bname = req.query.bname
+        res.locals.rno = req.query.rno
+    }
+
     knex.select('*').from('review').where({userid:user.userid}).then((reviews) => {
 
         // get favorite room (highest rated)

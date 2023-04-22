@@ -41,6 +41,12 @@
             {{/if}}
         </div>
     </div>
+    {{#if msg}}
+        <div class="alert alert-success alert-dismissible" role="alert">
+            <strong>{{bname}} {{rno}}</strong> deleted succesfully.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">&times;</button>
+        </div>
+    {{/if}}
     <div class="row spaces justify-content-center">
         <div class="col-5">
             <div class="my-spaces">
