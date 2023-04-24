@@ -53,7 +53,7 @@ exports.roomcreate = (req, res) => {
     .then(
         function(rid) {
             if (req.files) {
-                if (isIterable(req.files.addimage)) {
+                if (Array.isArray(req.files.addimage)) {
                     for (file of req.files.addimage) {
                         console.log(file.name);
                         knex('image').insert ({
@@ -185,7 +185,7 @@ exports.editRoom = (req, res) => {
     .then(
         function(rid) {
             if (req.files) {
-                if (isIterable(req.files.addimage)) {
+                if (Array.isArray(req.files.addimage)) {
                     for (file of req.files.addimage) {
                         console.log(file.name);
                         knex('image').insert ({
